@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملخص مهارات التفكير الناقد - قيس جازي</title>
+    <title>ملخص التفكير الناقد - قيس جازي</title>
     
-    <!-- خطوط جوجل -->
+    <!-- خطوط جوجل: خط 'Cairo' للنصوص و 'Tajawal' للعناوين لإعطاء تباين عصري -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,11 +16,41 @@
     <!-- أيقونات Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- إعدادات Tailwind المخصصة -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+                    fontFamily: { 
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif']
+                    },
+                    colors: {
+                        dark: '#050B14', // لون خلفية عميق جداً
+                        glass: 'rgba(255, 255, 255, 0.03)',
+                        glassHover: 'rgba(255, 255, 255, 0.08)'
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'reveal': 'reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        reveal: {
+                            '0%': { opacity: '0', transform: 'translateY(30px) scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                        }
+                    }
                 }
             }
         }
@@ -28,245 +58,367 @@
     
     <style>
         body { 
-            font-family: 'Cairo', sans-serif; 
-            background-color: #f8fafc; /* خلفية هادئة جداً */
+            background-color: #050B14; 
+            color: #e2e8f0;
             overflow-x: hidden;
         }
-        
-        /* تصميم البطاقات المطور والمستقر */
-        .modern-card {
-            background-color: #ffffff;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
-            border: 1px solid rgba(255,255,255,0.8);
+
+        /* تنسيق البطاقات الزجاجية المتوهجة */
+        .neon-card {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%; /* لضمان تناسق الارتفاع في الشبكة */
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .modern-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        .neon-card:hover {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* توهج داخلي عند المرور */
+        .neon-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .neon-card:hover::before { opacity: 1; }
+
+        /* الأرقام العملاقة في الخلفية */
+        .giant-number {
+            position: absolute;
+            bottom: -20px;
+            left: -10px;
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.02);
+            z-index: -1;
+            font-family: 'Tajawal', sans-serif;
+            transition: color 0.4s ease, transform 0.4s ease;
+        }
+        .neon-card:hover .giant-number {
+            color: rgba(255, 255, 255, 0.05);
+            transform: scale(1.05) rotate(-5deg);
+        }
+
+        /* النصوص المتدرجة المضيئة */
+        .text-glow-cyan {
+            background: linear-gradient(to right, #22d3ee, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(34, 211, 238, 0.3);
+        }
+        .text-glow-purple {
+            background: linear-gradient(to right, #c084fc, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(192, 132, 252, 0.3);
         }
 
-        /* شريط ملون جانبي */
-        .side-bar {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 6px;
-            height: 100%;
+        /* صندوق المقولة الذهبية */
+        .golden-quote {
+            position: relative;
+            background: linear-gradient(145deg, rgba(234, 179, 8, 0.1), rgba(217, 119, 6, 0.02));
+            border: 1px solid rgba(234, 179, 8, 0.2);
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.05), inset 0 0 20px rgba(234, 179, 8, 0.02);
         }
+        .golden-quote::after {
+            content: '"';
+            position: absolute;
+            top: -20px; right: 20px;
+            font-size: 6rem;
+            color: rgba(234, 179, 8, 0.1);
+            font-family: serif;
+        }
+
+        /* تأخيرات الظهور */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
     </style>
 </head>
-<body class="text-slate-800 antialiased min-h-screen pb-16 relative">
+<body class="font-cairo">
 
-    <!-- خلفية جمالية ثابتة ولا تتداخل مع المحتوى -->
-    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] opacity-40">
-        <div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        <div class="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl"></div>
+    <!-- مؤثرات الإضاءة في الخلفية (Blobs) -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-600/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-600/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob" style="animation-delay: 2s"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-blue-600/20 rounded-full mix-blend-screen filter blur-[150px] animate-blob" style="animation-delay: 4s"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         
-        <!-- الترويسة -->
-        <header class="text-center mb-16">
-            <div class="inline-flex items-center justify-center gap-2 bg-white border border-indigo-100 text-indigo-700 px-6 py-2 rounded-full text-sm font-bold mb-6 shadow-sm">
-                <i data-lucide="pen-tool" class="w-4 h-4 text-indigo-500"></i>
-                <span>إعداد: قيس جازي</span>
+        <!-- الترويسة المبتكرة -->
+        <header class="text-center mb-20 animate-reveal">
+            <!-- شارة إعداد قيس جازي بتصميم نيون -->
+            <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-slate-800/50 border border-slate-700 backdrop-blur-md mb-8 hover:bg-slate-800 transition-colors animate-float cursor-default group">
+                <div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#22d3ee]"></div>
+                <span class="font-tajawal text-slate-300 tracking-wide text-sm">إعداد: <span class="text-white font-bold group-hover:text-cyan-400 transition-colors">قيس جازي</span></span>
             </div>
-            <h1 class="text-3xl md:text-5xl font-black mb-6 tracking-tight leading-tight">
-                ملخص <span class="gradient-text">التفكير الناقد</span> وحل المشكلات
+            
+            <h1 class="text-5xl md:text-7xl font-tajawal font-black mb-6 leading-tight">
+                التفكير الناقد <br>
+                <span class="text-glow-cyan text-4xl md:text-6xl">وحل المشكلات المعرفية</span>
             </h1>
-            <p class="text-lg text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
-                خلاصة مركزة للمفاهيم الأساسية، نظريات المعرفة، وآليات عمل العقل المدرك مصممة لتسهيل الدراسة.
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                رحلة عصبية داخل العقل المدرك لاستكشاف هندسة المعرفة، بناء القرارات، وفهم العلاقة العميقة بين التفكير، اللغة، والتعلم.
             </p>
         </header>
 
-        <!-- شبكة المحتوى (Grid) مرنة جداً -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        <!-- شبكة "Bento Grid" العصرية وغير المتماثلة -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 
-            <!-- البطاقة 1 -->
-            <section class="modern-card p-6 sm:p-8">
-                <div class="side-bar bg-gradient-to-b from-blue-400 to-cyan-400"></div>
-                <div class="flex items-center mb-6">
-                    <div class="bg-blue-50 text-blue-600 p-3 rounded-2xl ml-4">
-                        <i data-lucide="book-open" class="w-6 h-6"></i>
+            <!-- 1. موضوعات المساق -->
+            <section class="neon-card p-8 animate-reveal delay-100">
+                <div class="giant-number">01</div>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="p-3 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-400">
+                        <i data-lucide="layers" class="w-6 h-6"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-slate-800">موضوعات المساق الأساسية</h2>
+                    <h2 class="text-2xl font-tajawal font-bold text-white">موضوعات المساق</h2>
                 </div>
-                <div class="space-y-4 flex-grow">
-                    <div class="flex items-start gap-3">
-                        <i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-500 mt-1 shrink-0"></i>
-                        <p class="text-slate-600 leading-relaxed"><strong class="text-slate-800">إعادة إنتاج العقلانية:</strong> الإشكالية الحقيقية تتطلب تفكيراً ناقداً.</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-500 mt-1 shrink-0"></i>
-                        <p class="text-slate-600 leading-relaxed"><strong class="text-slate-800">النظرية المعرفية:</strong> تتضمن فك الرموز للوصول إلى الحقيقة.</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-500 mt-1 shrink-0"></i>
-                        <p class="text-slate-600 leading-relaxed"><strong class="text-slate-800">الاعتراف والقرار:</strong> <span class="text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded">القرار</span> أكثر قيمة من الاعتراف (سواء فكرياً، وجودياً، أو عقدياً).</p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-500 mt-1 shrink-0"></i>
-                        <p class="text-slate-600 leading-relaxed"><strong class="text-slate-800">المعرفة والاختلاف:</strong> يجب أن نختلف لنتفق لتعلم "كيف نفكر في المعرفة".</p>
-                    </div>
-                </div>
+                <ul class="space-y-5">
+                    <li class="flex gap-4 group/item">
+                        <div class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4] group-hover/item:scale-150 transition-transform"></div>
+                        <p class="text-slate-300 leading-relaxed"><strong class="text-cyan-300">إعادة إنتاج العقلانية:</strong> الإشكالية الحقيقية تتطلب تفكيراً ناقداً.</p>
+                    </li>
+                    <li class="flex gap-4 group/item">
+                        <div class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4] group-hover/item:scale-150 transition-transform"></div>
+                        <p class="text-slate-300 leading-relaxed"><strong class="text-cyan-300">النظرية المعرفية:</strong> تعتمد على فك الرموز للوصول للحقيقة.</p>
+                    </li>
+                    <li class="flex gap-4 group/item">
+                        <div class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4] group-hover/item:scale-150 transition-transform"></div>
+                        <p class="text-slate-300 leading-relaxed">
+                            <strong class="text-cyan-300">قوة القرار:</strong> 
+                            <span class="bg-cyan-500/20 text-cyan-200 px-2 py-1 rounded text-sm mx-1">القرار</span> 
+                            أكثر قيمة من الاعتراف (فكرياً ووجودياً).
+                        </p>
+                    </li>
+                    <li class="flex gap-4 group/item">
+                        <div class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4] group-hover/item:scale-150 transition-transform"></div>
+                        <p class="text-slate-300 leading-relaxed"><strong class="text-cyan-300">المعرفة والاختلاف:</strong> نختلف لنتفق لنتعلم "كيف نفكر".</p>
+                    </li>
+                </ul>
             </section>
 
-            <!-- البطاقة 2 -->
-            <section class="modern-card p-6 sm:p-8">
-                <div class="side-bar bg-gradient-to-b from-indigo-400 to-purple-400"></div>
-                <div class="flex items-center mb-6">
-                    <div class="bg-indigo-50 text-indigo-600 p-3 rounded-2xl ml-4">
-                        <i data-lucide="brain" class="w-6 h-6"></i>
+            <!-- 2. التفكير والتفكر -->
+            <section class="neon-card p-8 animate-reveal delay-200">
+                <div class="giant-number">02</div>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="p-3 bg-purple-500/10 rounded-xl border border-purple-500/20 text-purple-400">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-slate-800">التفكير والتفكر</h2>
-                </div>
-                <div class="space-y-5 flex-grow">
-                    <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                        <h3 class="font-bold text-indigo-700 mb-2 flex items-center gap-2 text-lg">
-                            <i data-lucide="lightbulb" class="w-5 h-5"></i> التفكير
-                        </h3>
-                        <p class="text-slate-600 leading-relaxed">هو مفهوم أعمق وعبارة عن خطة هادفة. ينتقل من مجرد سؤال "ماذا" إلى "مهارة" قابلة للتطبيق. <br> <span class="font-semibold mt-2 block text-slate-700">أنواعه: استنباطي واستقرائي.</span></p>
-                    </div>
-                    
-                    <div class="p-5 bg-purple-50 rounded-2xl border border-purple-100">
-                        <h3 class="font-bold text-purple-700 mb-2 flex items-center gap-2 text-lg">
-                            <i data-lucide="sparkles" class="w-5 h-5"></i> التفكر
-                        </h3>
-                        <p class="text-slate-600 leading-relaxed mb-4">هو "عمق التفكير".</p>
-                        <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-3 rounded-xl text-center font-bold shadow-md">
-                            " ليس كل من يفكر يتفكر "
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- البطاقة 3 (تأخذ عرض كامل الشاشة في الأجهزة الكبيرة) -->
-            <section class="modern-card p-6 sm:p-8 lg:col-span-2">
-                <div class="side-bar bg-gradient-to-b from-amber-400 to-orange-400"></div>
-                <div class="flex items-center mb-6">
-                    <div class="bg-amber-50 text-amber-600 p-3 rounded-2xl ml-4">
-                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-slate-800">المعرفة، التعلم، والتعليم</h2>
+                    <h2 class="text-2xl font-tajawal font-bold text-white">التفكير والتفكر</h2>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-3">
-                            <div class="bg-amber-100 p-2 rounded-lg shrink-0 mt-1">
-                                <i data-lucide="compass" class="w-5 h-5 text-amber-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-800 mb-1">المعرفة</h3>
-                                <p class="text-slate-600 leading-relaxed">هي الفهم، الإدراك، والوعي. العلم والثقافة هما جزء من المعرفة، وليس العكس.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3 mt-6">
-                            <div class="bg-amber-100 p-2 rounded-lg shrink-0 mt-1">
-                                <i data-lucide="target" class="w-5 h-5 text-amber-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-800 mb-1">التعلم</h3>
-                                <p class="text-slate-600 leading-relaxed">عملية ذاتية داخلية دافعية لإنتاج المعرفة، تنبع من رغبة الفرد (أنت من يريدها).</p>
-                            </div>
-                        </div>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-purple-300 font-bold mb-2 flex items-center gap-2">
+                            <i data-lucide="lightbulb" class="w-4 h-4"></i> التفكير
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed border-r-2 border-purple-500/30 pr-4">
+                            مفهوم أعمق وخطة هادفة. ينتقل من مجرد سؤال "ماذا" إلى "مهارة" قابلة للتطبيق. ينقسم إلى: <span class="text-white">استنباطي واستقرائي</span>.
+                        </p>
                     </div>
                     
-                    <!-- صندوق القاعدة الذهبية مصمم لعدم التداخل -->
-                    <div class="bg-gradient-to-br from-orange-50 to-amber-100 p-6 rounded-2xl border border-amber-200 h-full flex flex-col justify-center">
-                        <h4 class="text-amber-800 font-bold text-xl mb-4 flex items-center gap-2 border-b border-amber-200 pb-3">
-                            <i data-lucide="star" class="w-6 h-6 text-amber-600"></i>
-                            قاعدة التراكم
+                    <div class="h-px w-full bg-gradient-to-l from-transparent via-purple-500/20 to-transparent"></div>
+
+                    <div>
+                        <h3 class="text-purple-300 font-bold mb-3 flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i> التفكر (عمق التفكير)
+                        </h3>
+                        <!-- نيون مضيء للمقولة -->
+                        <div class="bg-purple-900/40 border border-purple-500/30 p-4 rounded-xl text-center shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                            <p class="font-tajawal font-bold text-lg text-glow-purple tracking-wide">
+                                " ليس كل من يفكر يتفكر "
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. النقد والعقل المدرك (أسفل الأول والثاني في الشاشات الكبيرة) -->
+            <section class="neon-card p-8 animate-reveal delay-300">
+                <div class="giant-number">03</div>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-400">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-2xl font-tajawal font-bold text-white">العقل المدرك والنقد</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:bg-slate-800 transition-colors">
+                        <h3 class="text-emerald-400 font-bold mb-1">النقد والنقد الذاتي</h3>
+                        <p class="text-slate-400 text-sm">التفكير بعقلانية ورؤية مجردة. يُوجه <span class="text-white">للعقل</span> وليس للعاطفة.</p>
+                    </div>
+                    <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:bg-slate-800 transition-colors">
+                        <h3 class="text-emerald-400 font-bold mb-1">العقل في القرآن</h3>
+                        <p class="text-slate-400 text-sm">ذُكر بصورة <span class="text-white">"فعلية"</span> (تفكر وقرار) وليس كاسم ثابت.</p>
+                    </div>
+                    <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:bg-slate-800 transition-colors">
+                        <h3 class="text-emerald-400 font-bold mb-1">المدرك مقابل الإدراك</h3>
+                        <p class="text-slate-400 text-sm">العقل المدرك يبحث بكيفية عمله، بينما الإدراك هو استيعاب مباشر.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. المعرفة والتعلم (تمتد على عمودين لتكون بارزة جداً) -->
+            <section class="neon-card p-8 md:col-span-2 lg:col-span-2 animate-reveal delay-400">
+                <div class="giant-number">04</div>
+                <div class="flex flex-col md:flex-row gap-8 items-center h-full">
+                    
+                    <div class="w-full md:w-5/12">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-3 bg-amber-500/10 rounded-xl border border-amber-500/20 text-amber-400">
+                                <i data-lucide="compass" class="w-6 h-6"></i>
+                            </div>
+                            <h2 class="text-2xl font-tajawal font-bold text-white">المعرفة والتعلم</h2>
+                        </div>
+                        <ul class="space-y-6">
+                            <li>
+                                <h3 class="text-amber-400 font-bold mb-1">المعرفة</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">هي الفهم والوعي. (العلم والثقافة جزء منها).</p>
+                            </li>
+                            <li>
+                                <h3 class="text-amber-400 font-bold mb-1">التعلم</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">عملية ذاتية داخلية دافعية لإنتاج المعرفة، تنبع من رغبة الفرد نفسه.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- الصندوق الذهبي - تصميم بصري مبهر -->
+                    <div class="w-full md:w-7/12 golden-quote p-6 sm:p-8 rounded-2xl h-full flex flex-col justify-center">
+                        <h4 class="text-amber-500 font-tajawal font-black text-xl mb-4 flex items-center gap-2">
+                            <i data-lucide="crown" class="w-5 h-5"></i>
+                            قاعدة التراكم الذهبية
                         </h4>
-                        <p class="text-amber-900 font-semibold text-lg mb-4 leading-relaxed">
-                            التعلم يسبق التعليم وهو أهم منه؛ فنحن ننمو حرفياً من التعلم إلى التعليم.
+                        <p class="text-white text-lg sm:text-xl font-bold leading-relaxed mb-4">
+                            "التعلم يسبق التعليم وهو أهم منه؛ فنحن ننمو حرفياً من التعلم إلى التعليم."
                         </p>
-                        <p class="text-amber-800 text-base leading-relaxed bg-white/60 p-3 rounded-xl">
-                            لكي تمتلك مخزوناً معرفياً (هندسة المعرفة)، يجب عليك أولاً أن <span class="font-bold text-amber-900 underline">تُغير طريقة تفكيرك</span>.
-                        </p>
+                        <div class="flex items-center gap-3 bg-black/30 p-4 rounded-xl border border-white/5">
+                            <i data-lucide="key" class="w-5 h-5 text-amber-500/70"></i>
+                            <p class="text-slate-300 text-sm">
+                                لتمتلك مخزوناً معرفياً (هندسة المعرفة)، يجب أولاً أن <span class="text-amber-400 font-bold">تُغير طريقة تفكيرك</span>.
+                            </p>
+                        </div>
                     </div>
+
                 </div>
             </section>
 
-            <!-- البطاقة 4 -->
-            <section class="modern-card p-6 sm:p-8">
-                <div class="side-bar bg-gradient-to-b from-teal-400 to-emerald-400"></div>
-                <div class="flex items-center mb-6">
-                    <div class="bg-teal-50 text-teal-600 p-3 rounded-2xl ml-4">
-                        <i data-lucide="eye" class="w-6 h-6"></i>
+            <!-- 5. التطور في التعليم -->
+            <section class="neon-card p-8 animate-reveal delay-500">
+                <div class="giant-number">05</div>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="p-3 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400">
+                        <i data-lucide="rocket" class="w-6 h-6"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-slate-800">النقد والعقل المدرك</h2>
-                </div>
-                <div class="space-y-4 flex-grow">
-                    <div class="bg-slate-50 p-4 rounded-xl flex items-start gap-3 border border-slate-100">
-                        <i data-lucide="scale" class="w-5 h-5 text-teal-600 mt-1 shrink-0"></i>
-                        <p class="text-slate-600 leading-relaxed"><strong class="text-slate-800 block mb-1">النقد (والنقد الذاتي):</strong> القدرة على التفكير بعقلانية ورؤية علمية مجردة. يوجه إلى "العقل" وليس "العاطفة".</p>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-xl flex items-start gap-3 border border-slate-100">
-                        <i data-lucide="book" class="w-5 h-5 text-teal-600 mt-1 shrink-0"></i>
-                        <p class="text-slate-600 leading-relaxed"><strong class="text-slate-800 block mb-1">العقل في القرآن:</strong> ذُكر بصورة "فعلية" (مرتبطة بالتفكر) وليس كاسم، فقيمة العقل تكمن في فعله واتخاذ القرار.</p>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-xl flex items-start gap-3 border border-slate-100">
-                        <i data-lucide="git-merge" class="w-5 h-5 text-teal-600 mt-1 shrink-0"></i>
-                        <p class="text-slate-600 leading-relaxed"><strong class="text-slate-800 block mb-1">العقل المدرك مقابل الإدراك:</strong> العقل المدرك يبحث في كيفية عمل العقل، بينما الإدراك هو عملية الاستيعاب المباشرة.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- البطاقة 5 -->
-            <section class="modern-card p-6 sm:p-8">
-                <div class="side-bar bg-gradient-to-b from-rose-400 to-pink-400"></div>
-                <div class="flex items-center mb-8">
-                    <div class="bg-rose-50 text-rose-600 p-3 rounded-2xl ml-4">
-                        <i data-lucide="trending-up" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-slate-800">التطور في التعليم</h2>
+                    <h2 class="text-2xl font-tajawal font-bold text-white">التطور في التعليم</h2>
                 </div>
                 
-                <!-- تصميم القائمة بدون تداخل -->
-                <div class="space-y-6 flex-grow">
-                    <div class="flex gap-4">
-                        <div class="flex flex-col items-center">
-                            <div class="w-4 h-4 rounded-full bg-rose-500 mt-1"></div>
-                            <div class="w-0.5 h-full bg-rose-200 mt-2"></div>
-                        </div>
-                        <div class="pb-2">
-                            <h3 class="font-bold text-slate-800 text-lg mb-1">التدرج في التعليم</h3>
-                            <p class="text-slate-600 leading-relaxed">هو منهجية أساسية في السلوكية التعليمية لبناء المعرفة بخطوات ثابتة.</p>
-                        </div>
+                <div class="relative pl-4 border-r border-slate-700/50 space-y-8 pr-6 mt-4">
+                    <div class="relative">
+                        <div class="absolute w-3 h-3 bg-rose-500 rounded-full -right-[29px] top-2 shadow-[0_0_10px_#f43f5e]"></div>
+                        <h3 class="text-white font-bold mb-2">التدرج في التعليم</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">منهجية أساسية في السلوكية التعليمية لبناء المعرفة بخطوات تراكمية ثابتة.</p>
                     </div>
+                    <div class="relative">
+                        <div class="absolute w-3 h-3 bg-pink-500 rounded-full -right-[29px] top-2 shadow-[0_0_10px_#ec4899]"></div>
+                        <h3 class="text-white font-bold mb-2">النظرية الحلقية المفتوحة</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">عملية التعليم والتفكير يجب أن تكون منفتحة، ديناميكية، وغير مغلقة لتسمح بالتطور.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. التفكير واللغة (آراء العلماء) - قسم واسع بتصميم مستقبلي -->
+            <section class="neon-card p-8 md:col-span-2 lg:col-span-3 animate-reveal delay-[600ms]">
+                <div class="giant-number">06</div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="p-3 bg-fuchsia-500/10 rounded-xl border border-fuchsia-500/20 text-fuchsia-400">
+                            <i data-lucide="message-square" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-2xl font-tajawal font-bold text-white">التفكير واللغة (آراء العلماء)</h2>
+                    </div>
+                    <!-- شريط القاعدة المتوهج -->
+                    <div class="bg-fuchsia-900/30 border border-fuchsia-500/30 px-6 py-3 rounded-full shadow-[0_0_20px_rgba(217,70,239,0.15)] inline-flex items-center gap-2">
+                        <div class="w-2 h-2 bg-fuchsia-400 rounded-full animate-ping"></div>
+                        <span class="text-fuchsia-200 font-bold text-sm tracking-wide">القاعدة: التفكير هو أساس عملية اللغة</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     
-                    <div class="flex gap-4">
-                        <div class="flex flex-col items-center">
-                            <div class="w-4 h-4 rounded-full bg-pink-500 mt-1 shadow-md"></div>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-800 text-lg mb-1">النظرية الحلقية المفتوحة</h3>
-                            <p class="text-slate-600 leading-relaxed">تؤكد على أن عملية التعليم والتفكير يجب أن تكون منفتحة وديناميكية، وليست مغلقة.</p>
+                    <!-- بياجيه -->
+                    <div class="group relative bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 hover:bg-slate-800/50 transition-all overflow-hidden">
+                        <div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <h3 class="text-2xl font-tajawal font-bold text-cyan-400 mb-2">العالم بياجيه</h3>
+                        <p class="text-white text-lg mb-4">"الأساس يتشكل في المرحلة العمرية، حيث يلازم الارتقاء المعرفي."</p>
+                        <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                <span class="text-cyan-500 font-bold">ببساطة:</span> تطور اللغة والتفكير لدى الإنسان مرتبط بعمره ومراحل نموه؛ فكلما تطور إدراكه العقلي مع العمر، تطورت قدرته على استخدام اللغة.
+                            </p>
                         </div>
                     </div>
+
+                    <!-- واطسون -->
+                    <div class="group relative bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 hover:bg-slate-800/50 transition-all overflow-hidden">
+                        <div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-transparent via-pink-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <h3 class="text-2xl font-tajawal font-bold text-pink-400 mb-2 flex items-center justify-between">
+                            العالم واطسون
+                            <span class="text-xs bg-pink-500/20 text-pink-300 px-3 py-1 rounded-full border border-pink-500/20">المدرسة السلوكية</span>
+                        </h3>
+                        <p class="text-white text-lg mb-4">"اللغة والتفكير شيء واحد لا ينفصلان."</p>
+                        <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                <span class="text-pink-500 font-bold">ببساطة:</span> التفكير ما هو إلا "كلام صامت" أو حديث مع الذات داخل العقل. لذلك هما وجهان لعملة واحدة ولا يمكن فصلهما أبداً.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
         </div>
+        
+        <!-- التذييل -->
+        <footer class="mt-16 text-center border-t border-white/10 pt-8 animate-reveal delay-[700ms]">
+            <p class="text-slate-500 text-sm flex items-center justify-center gap-2">
+                مصمم خصيصاً للمراجعة الذكية <i data-lucide="sparkles" class="w-4 h-4 text-cyan-500"></i>
+            </p>
+        </footer>
     </div>
 
-    <!-- تفعيل الأيقونات -->
+    <!-- تفعيل الأيقونات والماوس افيكت -->
     <script>
         lucide.createIcons();
+        
+        // إضافة تأثير الإضاءة التفاعلية مع حركة الماوس للبطاقات
+        document.querySelectorAll('.neon-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
     </script>
 </body>
 </html>
