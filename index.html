@@ -2,21 +2,19 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملخص التفكير الناقد - قيس جازي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تطبيقات التفكير الناقد - قيس جازي</title>
     
-    <!-- خطوط جوجل: خط 'Cairo' للنصوص و 'Tajawal' للعناوين لإعطاء تباين عصري -->
+    <!-- خطوط جوجل -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- أيقونات Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- إعدادات Tailwind المخصصة -->
     <script>
         tailwind.config = {
             theme: {
@@ -26,28 +24,8 @@
                         tajawal: ['Tajawal', 'sans-serif']
                     },
                     colors: {
-                        dark: '#050B14', // لون خلفية عميق جداً
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'reveal': 'reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        reveal: {
-                            '0%': { opacity: '0', transform: 'translateY(30px) scale(0.95)' },
-                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
-                        }
+                        appBg: '#0f172a',
+                        cardBg: '#1e293b',
                     }
                 }
             }
@@ -55,561 +33,608 @@
     </script>
     
     <style>
-        body { 
-            background-color: #050B14; 
-            color: #e2e8f0;
-            overflow-x: hidden;
+        body {
+            background-color: #1a1a1a;
+            background-image: radial-gradient(circle at 50% 50%, #2a2a2a 0%, #111 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            overflow: hidden;
         }
 
-        /* تنسيق البطاقات الزجاجية المتوهجة */
-        .neon-card {
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
+        /* =========================================
+           تصميم الهاتف الواقعي من الخارج
+           ========================================= */
+        #phone-wrapper {
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        #phone-frame {
+            width: 390px;
+            height: 844px;
+            background-color: #000;
+            border-radius: 55px;
+            box-shadow: 
+                inset 0 0 0 12px #000,
+                inset 0 0 0 14px #4a4a4a,
+                inset 0 0 0 15px #222,
+                0 40px 80px rgba(0,0,0,0.8),
+                0 10px 20px rgba(0,0,0,0.5);
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 10;
         }
 
-        .neon-card:hover {
-            background: rgba(30, 41, 59, 0.6);
-            border-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-        }
-
-        /* توهج داخلي عند المرور */
-        .neon-card::before {
-            content: '';
+        /* أزرار الهاتف الجانبية */
+        .phone-button {
             position: absolute;
-            top: 0; left: 0; right: 0; height: 100%;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+            background: #333;
+            border-radius: 4px 0 0 4px;
+            width: 4px;
+            z-index: 5;
+            box-shadow: inset 2px 0 4px rgba(255,255,255,0.2);
+        }
+        .btn-mute { top: 120px; height: 30px; left: -4px; }
+        .btn-vol-up { top: 180px; height: 60px; left: -4px; }
+        .btn-vol-down { top: 260px; height: 60px; left: -4px; }
+        .btn-power { top: 200px; height: 90px; right: -4px; border-radius: 0 4px 4px 0; background: #333; }
+
+        /* الجزيرة التفاعلية (Dynamic Island) */
+        .dynamic-island {
+            position: absolute;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 35px;
+            background-color: #000;
+            border-radius: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .island-camera { width: 14px; height: 14px; background: #111; border-radius: 50%; box-shadow: inset 0 0 4px rgba(255,255,255,0.2); border: 1px solid #222;}
+        .island-sensor { width: 8px; height: 8px; background: #0a0a2a; border-radius: 50%; }
+
+        /* =========================================
+           الشاشات العامة (Screens)
+           ========================================= */
+        .screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             opacity: 0;
-            transition: opacity 0.3s;
             pointer-events: none;
-            z-index: -1;
+            z-index: 10;
         }
-        .neon-card:hover::before { opacity: 1; }
+        .screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-        /* الأرقام العملاقة في الخلفية */
-        .giant-number {
+        /* =========================================
+           1. شاشة القفل 
+           ========================================= */
+        #lock-screen {
+            background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px;
+            color: white;
+            z-index: 30;
+        }
+        #lock-screen::after { 
+            content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.4); z-index: -1;
+        }
+
+        .lock-icon { margin-top: 10px; animation: unlockPulse 2s infinite; }
+        @keyframes unlockPulse { 0%, 100% { transform: scale(1); opacity: 0.8;} 50% { transform: scale(1.1); opacity: 1;} }
+        
+        #clock { font-size: 5.5rem; font-weight: 700; font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1; letter-spacing: -1px; text-shadow: 0 2px 10px rgba(0,0,0,0.3);}
+        #date { font-size: 1.2rem; font-weight: 600; text-shadow: 0 1px 5px rgba(0,0,0,0.5); margin-bottom: 30px;}
+
+        .unlock-area {
             position: absolute;
-            bottom: -20px;
-            left: -10px;
-            font-size: 8rem;
-            font-weight: 900;
-            line-height: 1;
-            color: rgba(255, 255, 255, 0.02);
-            z-index: -1;
-            font-family: 'Tajawal', sans-serif;
-            transition: color 0.4s ease, transform 0.4s ease;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
         }
-        .neon-card:hover .giant-number {
-            color: rgba(255, 255, 255, 0.05);
-            transform: scale(1.05) rotate(-5deg);
+        .unlock-bar {
+            width: 140px; height: 5px; background: white; border-radius: 10px; margin-top: 10px;
+            animation: bounceBar 2s infinite;
+        }
+        @keyframes bounceBar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        /* =========================================
+           2. الشاشة الرئيسية (Home Screen)
+           ========================================= */
+        #home-screen {
+            background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: 20;
+            padding-top: 80px;
+        }
+        
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 20px;
+            padding: 40px 30px;
+            justify-items: center;
         }
 
-        /* النصوص المتدرجة المضيئة */
-        .text-glow-cyan {
-            background: linear-gradient(to right, #22d3ee, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(34, 211, 238, 0.3);
-        }
-        .text-glow-purple {
-            background: linear-gradient(to right, #c084fc, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(192, 132, 252, 0.3);
+        .app-icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            width: 100%;
         }
 
-        /* صندوق المقولة الذهبية */
-        .golden-quote {
+        .app-icon {
+            width: 75px;
+            height: 75px;
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
             position: relative;
-            background: linear-gradient(145deg, rgba(234, 179, 8, 0.1), rgba(217, 119, 6, 0.02));
-            border: 1px solid rgba(234, 179, 8, 0.2);
-            box-shadow: 0 0 20px rgba(234, 179, 8, 0.05), inset 0 0 20px rgba(234, 179, 8, 0.02);
         }
-        .golden-quote::after {
-            content: '"';
-            position: absolute;
-            top: -20px; right: 20px;
-            font-size: 6rem;
-            color: rgba(234, 179, 8, 0.1);
-            font-family: serif;
+        .app-icon-container:active .app-icon { transform: scale(0.9); }
+        
+        .app-critical { background: linear-gradient(135deg, #1e3a8a, #8b5cf6); border: 1px solid rgba(255,255,255,0.2); }
+        .app-quiz { background: linear-gradient(135deg, #f59e0b, #ef4444); border: 1px solid rgba(255,255,255,0.2); }
+
+        /* =========================================
+           3. التطبيقات الداخلية (App & Quiz)
+           ========================================= */
+        .inner-app-screen {
+            background-color: #0f172a;
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.9) translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .inner-app-screen.active {
+            transform: scale(1) translateY(0);
+            opacity: 1;
         }
 
-        /* تأخيرات الظهور */
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        .delay-500 { animation-delay: 500ms; }
-        .delay-600 { animation-delay: 600ms; }
-        .delay-700 { animation-delay: 700ms; }
-        .delay-800 { animation-delay: 800ms; }
+        .app-header {
+            padding: 50px 20px 20px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .app-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            padding-bottom: 120px;
+        }
+        .app-content::-webkit-scrollbar { display: none; }
+
+        /* تنسيق بطاقات الملخص */
+        .info-card {
+            background: #1e293b;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .info-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--card-accent);
+        }
+
+        /* تنسيق بطاقات الكويز */
+        .quiz-card {
+            background: #1e293b;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .quiz-option {
+            display: block;
+            background: #0f172a;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #cbd5e1;
+        }
+        .quiz-option:hover { background: #1e3a8a; border-color: #3b82f6; color: white;}
+        .quiz-option input[type="radio"] { display: none; }
+        .quiz-option.selected {
+            background: #2563eb; border-color: #60a5fa; color: white;
+        }
+        
+        .quiz-option.correct { background: #059669 !important; border-color: #34d399 !important; color: white !important;}
+        .quiz-option.wrong { background: #e11d48 !important; border-color: #fb7185 !important; color: white !important;}
+
+        .btn-submit {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white; width: 100%; padding: 15px; border-radius: 15px;
+            font-weight: bold; font-size: 1.1rem; border: none; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3); margin-top: 20px;
+        }
+
+        /* خط العودة */
+        .home-bar-container {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 30px;
+            z-index: 100; display: flex; justify-content: center; align-items: center;
+        }
+        .home-bar {
+            width: 140px; height: 5px; background: white; border-radius: 10px; cursor: pointer;
+        }
+
+        @media (max-width: 500px) {
+            body { background: #000; }
+            #phone-wrapper { transform: scale(1); width: 100vw; height: 100vh; }
+            #phone-frame { width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none; }
+            .phone-button, .dynamic-island { display: none; }
+            .app-header { padding-top: 40px; }
+            #lock-screen { padding-top: 60px; }
+        }
     </style>
 </head>
-<body class="font-cairo pb-16">
+<body>
 
-    <!-- مؤثرات الإضاءة في الخلفية (Blobs) -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-600/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-600/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob" style="animation-delay: 2s"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-blue-600/20 rounded-full mix-blend-screen filter blur-[150px] animate-blob" style="animation-delay: 4s"></div>
-    </div>
+    <div id="phone-wrapper">
+        <div class="phone-button btn-mute"></div>
+        <div class="phone-button btn-vol-up"></div>
+        <div class="phone-button btn-vol-down"></div>
+        <div class="phone-button btn-power"></div>
 
-    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-        
-        <!-- الترويسة المبتكرة -->
-        <header class="text-center mb-20 animate-reveal">
-            <!-- شارة إعداد قيس جازي بتصميم نيون -->
-            <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-slate-800/50 border border-slate-700 backdrop-blur-md mb-8 hover:bg-slate-800 transition-colors animate-float cursor-default group">
-                <div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#22d3ee]"></div>
-                <span class="font-tajawal text-slate-300 tracking-wide text-sm">إعداد: <span class="text-white font-bold group-hover:text-cyan-400 transition-colors">قيس جازي</span></span>
+        <div id="phone-frame">
+            <div class="dynamic-island">
+                <div class="island-sensor"></div>
+                <div class="island-camera"></div>
             </div>
-            
-            <h1 class="text-5xl md:text-7xl font-tajawal font-black mb-6 leading-tight">
-                التفكير الناقد <br>
-                <span class="text-glow-cyan text-4xl md:text-6xl">وحل المشكلات المعرفية</span>
-            </h1>
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                رحلة عصبية داخل العقل المدرك لاستكشاف هندسة المعرفة، بناء القرارات، وفهم العلاقة العميقة بين التفكير، اللاشعور، والتعلم.
-            </p>
-        </header>
 
-        <!-- شبكة "Bento Grid" العصرية وغير المتماثلة -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-
-            <!-- 1. موضوعات المساق -->
-            <section class="neon-card p-8 animate-reveal delay-100">
-                <div class="giant-number">01</div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-400">
-                        <i data-lucide="layers" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">موضوعات المساق</h2>
-                </div>
-                <ul class="space-y-5">
-                    <li class="flex gap-4 group/item">
-                        <div class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4] group-hover/item:scale-150 transition-transform"></div>
-                        <p class="text-slate-300 leading-relaxed"><strong class="text-cyan-300">إعادة إنتاج العقلانية:</strong> الإشكالية الحقيقية تتطلب تفكيراً ناقداً.</p>
-                    </li>
-                    <li class="flex gap-4 group/item">
-                        <div class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4] group-hover/item:scale-150 transition-transform"></div>
-                        <p class="text-slate-300 leading-relaxed"><strong class="text-cyan-300">النظرية المعرفية:</strong> تعتمد على فك الرموز للوصول للحقيقة.</p>
-                    </li>
-                    <li class="flex gap-4 group/item">
-                        <div class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4] group-hover/item:scale-150 transition-transform"></div>
-                        <p class="text-slate-300 leading-relaxed">
-                            <strong class="text-cyan-300">قوة القرار:</strong> 
-                            <span class="bg-cyan-500/20 text-cyan-200 px-2 py-1 rounded text-sm mx-1">القرار</span> 
-                            أكثر قيمة من الاعتراف.
-                        </p>
-                    </li>
-                    <li class="flex gap-4 group/item">
-                        <div class="mt-1 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_#06b6d4] group-hover/item:scale-150 transition-transform"></div>
-                        <p class="text-slate-300 leading-relaxed"><strong class="text-cyan-300">المعرفة والاختلاف:</strong> نختلف لنتفق لنتعلم "كيف نفكر".</p>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 2. التفكير والتفكر -->
-            <section class="neon-card p-8 animate-reveal delay-200">
-                <div class="giant-number">02</div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-purple-500/10 rounded-xl border border-purple-500/20 text-purple-400">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">التفكير والتفكر</h2>
-                </div>
+            <!-- 1. شاشة القفل -->
+            <div id="lock-screen" class="screen active" onclick="unlockPhone()">
+                <div class="lock-icon"><i data-lucide="lock" class="w-6 h-6 text-white drop-shadow-md"></i></div>
+                <div id="clock">00:00</div>
+                <div id="date">السبت، 1 يناير</div>
                 
-                <div class="space-y-6">
+                <div class="unlock-area">
+                    <span class="text-sm font-tajawal drop-shadow-md mb-2">اسحب للأعلى أو اضغط للفتح</span>
+                    <div class="unlock-bar"></div>
+                </div>
+            </div>
+
+            <!-- 2. الشاشة الرئيسية -->
+            <div id="home-screen" class="screen">
+                <div class="app-grid">
+                    <!-- التطبيق الأول: الملخص -->
+                    <div class="app-icon-container" onclick="openScreen('app-summary')">
+                        <div class="app-icon app-critical">
+                            <i data-lucide="book-open" class="w-10 h-10 text-white drop-shadow-lg"></i>
+                        </div>
+                        <span class="text-white text-sm font-bold drop-shadow-md font-tajawal mt-1">التفكير الناقد</span>
+                    </div>
+
+                    <!-- التطبيق الثاني: الاختبار -->
+                    <div class="app-icon-container" onclick="openScreen('app-quiz')">
+                        <div class="app-icon app-quiz">
+                            <i data-lucide="check-circle" class="w-10 h-10 text-white drop-shadow-lg"></i>
+                        </div>
+                        <span class="text-white text-sm font-bold drop-shadow-md font-tajawal mt-1">اختبار شامل</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==============================================
+                 3. تطبيق الملخص الشامل (App Summary)
+                 ============================================== -->
+            <div id="app-summary" class="screen inner-app-screen">
+                <div class="app-header">
+                    <!-- زر الرجوع واسم المعد -->
+                    <div class="flex justify-between items-center mb-4">
+                        <button onclick="closeScreen('app-summary')" class="flex items-center gap-1 text-blue-400 hover:text-white transition-colors bg-slate-800/80 px-4 py-1.5 rounded-full border border-slate-700">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            <span class="text-sm font-bold font-tajawal">رجوع</span>
+                        </button>
+                        <div class="bg-slate-800 border border-slate-700 px-3 py-1 rounded-xl flex items-center gap-2">
+                            <span class="text-slate-400 text-[10px]">إعداد</span>
+                            <span class="text-white text-xs font-bold font-tajawal">قيس جازي</span>
+                        </div>
+                    </div>
+                    <!-- العنوان -->
                     <div>
-                        <h3 class="text-purple-300 font-bold mb-2 flex items-center gap-2">
-                            <i data-lucide="lightbulb" class="w-4 h-4"></i> التفكير
-                        </h3>
-                        <p class="text-slate-400 text-sm leading-relaxed border-r-2 border-purple-500/30 pr-4">
-                            مفهوم أعمق وخطة هادفة. ينتقل من مجرد سؤال "ماذا" إلى "مهارة". أنواعه: <span class="text-white">استنباطي واستقرائي</span>.
-                        </p>
+                        <h1 class="text-2xl font-tajawal font-black text-white leading-tight">التفكير الناقد<br><span class="text-sm text-blue-400">المرجع الشامل</span></h1>
                     </div>
-                    
-                    <div class="h-px w-full bg-gradient-to-l from-transparent via-purple-500/20 to-transparent"></div>
+                </div>
 
+                <div class="app-content text-slate-200">
+                    <!-- القسم 1 -->
+                    <div class="info-card" style="--card-accent: #3b82f6;">
+                        <h2 class="text-lg font-bold text-white font-tajawal mb-4 flex items-center gap-2"><i data-lucide="layers" class="text-blue-400 w-5 h-5"></i> أسس التفكير والمعرفة</h2>
+                        <div class="space-y-4 text-sm">
+                            <p><strong class="text-blue-300">إعادة إنتاج العقلانية:</strong> الإشكالية الحقيقية في واقعنا تتطلب تفكيراً ناقداً.</p>
+                            <p><strong class="text-blue-300">النظرية المعرفية:</strong> تعتمد على فك الرموز للوصول للحقيقة.</p>
+                            <p><strong class="text-blue-300">قوة القرار:</strong> اتخاذ القرار أكثر قيمة بكثير من مجرد الاعتراف.</p>
+                            <p><strong class="text-blue-300">المعرفة والاختلاف:</strong> نختلف لكي نتفق لنتعلم كيف نفكر.</p>
+                        </div>
+                    </div>
+
+                    <!-- القسم 2 -->
+                    <div class="info-card" style="--card-accent: #a855f7;">
+                        <h2 class="text-lg font-bold text-white font-tajawal mb-4 flex items-center gap-2"><i data-lucide="brain" class="text-purple-400 w-5 h-5"></i> مستويات العقل</h2>
+                        <div class="space-y-4 text-sm">
+                            <p><strong class="text-purple-300">التفكير:</strong> خطة هادفة تنتقل من سؤال إلى مهارة (استنباطي واستقرائي).</p>
+                            <p><strong class="text-purple-300">التفكر:</strong> مرحلة متقدمة وعميقة. (ليس كل من يفكر يتفكر).</p>
+                            <p><strong class="text-purple-300">اللاشعور (العقل الباطن):</strong> هو المحرك الخفي الذي يحدد طريقة تفكيرنا، بينما الشعور هو إدراكنا الحالي.</p>
+                            <p><strong class="text-purple-300">العقل في القرآن:</strong> ورد بصيغة فعلية للتأكيد على تفعيله، ولم يرد كاسم.</p>
+                        </div>
+                    </div>
+
+                    <!-- القسم 3 -->
+                    <div class="info-card" style="--card-accent: #f59e0b;">
+                        <h2 class="text-lg font-bold text-white font-tajawal mb-4 flex items-center gap-2"><i data-lucide="graduation-cap" class="text-amber-400 w-5 h-5"></i> التعلم والمفاهيم</h2>
+                        <div class="space-y-4 text-sm">
+                            <p><strong class="text-amber-300">المعرفة والتعلم:</strong> المعرفة هي الفهم والوعي. والتعلم عملية دافعية تسبق التعليم وهي أهم منه.</p>
+                            <p><strong class="text-amber-300">استشعار القيمة:</strong> بدون استشعار قيمة ما نتعلمه فلن ننجح حقاً.</p>
+                            <p><strong class="text-amber-300">الرؤية والرؤيا:</strong> الرؤية بالعين/البصيرة في الواقع. الرؤيا ما يراه النائم.</p>
+                            <p><strong class="text-amber-300">اليقين المطلق:</strong> يعتبر من أعمق مراحل الإيمان.</p>
+                        </div>
+                    </div>
+
+                    <!-- القسم 4 -->
+                    <div class="info-card" style="--card-accent: #ef4444;">
+                        <h2 class="text-lg font-bold text-white font-tajawal mb-4 flex items-center gap-2"><i data-lucide="alert-triangle" class="text-red-400 w-5 h-5"></i> أخطاء ومفارقات التفكير</h2>
+                        <div class="space-y-4 text-sm">
+                            <p><strong class="text-red-300">التمركز حول الذات:</strong> أول أخطاء التفكير. مفارقة: نحن نحتاج الحقيقة ولا نعترف بالخطأ.</p>
+                            <p><strong class="text-red-300">أين الخلل؟</strong> الخلل في طريقة تفكيرنا وليس في سلوكنا (السلوك نتيجة).</p>
+                            <p><strong class="text-red-300">المتعلم الجاهل:</strong> الشهادة لا تنفي الجهل، فنحن متصادمون مع عقولنا.</p>
+                            <p><strong class="text-red-300">مقولة الشافعي:</strong> رأيي صواب يحتمل الخطأ، ورأي غيري خطأ يحتمل الصواب.</p>
+                        </div>
+                    </div>
+
+                    <!-- القسم 5 -->
+                    <div class="info-card" style="--card-accent: #10b981;">
+                        <h2 class="text-lg font-bold text-white font-tajawal mb-4 flex items-center gap-2"><i data-lucide="book" class="text-emerald-400 w-5 h-5"></i> مفاهيم ونظريات</h2>
+                        <div class="space-y-4 text-sm">
+                            <p><strong class="text-emerald-300">الإصغاء والاستماع:</strong> الإصغاء أعمق بكثير ويتطلب تركيزاً قلبياً وعقلياً.</p>
+                            <p><strong class="text-emerald-300">علم الإنسان:</strong> أساس الحضارة أمومية وليست أبوية.</p>
+                            <p><strong class="text-emerald-300">التطور في التعليم:</strong> التدرج منهجية سلوكية، والنظرية الحلقية تؤكد على ديناميكية وانفتاح عملية التعليم.</p>
+                        </div>
+                    </div>
+
+                    <!-- القسم 6 -->
+                    <div class="info-card" style="--card-accent: #d946ef; margin-bottom: 30px;">
+                        <h2 class="text-lg font-bold text-white font-tajawal mb-4 flex items-center gap-2"><i data-lucide="message-square" class="text-fuchsia-400 w-5 h-5"></i> التفكير واللغة</h2>
+                        <div class="bg-fuchsia-900/20 p-2 rounded text-center mb-3 text-fuchsia-300 font-bold text-xs">القاعدة: التفكير هو أساس عملية اللغة</div>
+                        <div class="space-y-3 text-sm">
+                            <p><strong class="text-fuchsia-300">بياجيه:</strong> الأساس يتشكل في المرحلة العمرية ويلازم الارتقاء المعرفي.</p>
+                            <p><strong class="text-fuchsia-300">واطسون (المدرسة السلوكية):</strong> اللغة والتفكير شيء واحد لا ينفصلان (التفكير كلام صامت).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home-bar-container" onclick="closeScreen('app-summary')"><div class="home-bar"></div></div>
+            </div>
+
+            <!-- ==============================================
+                 4. تطبيق الاختبار (App Quiz)
+                 ============================================== -->
+            <div id="app-quiz" class="screen inner-app-screen">
+                <div class="app-header" style="border-bottom-color: rgba(245, 158, 11, 0.2);">
+                    <!-- زر الرجوع واسم المعد -->
+                    <div class="flex justify-between items-center mb-4">
+                        <button onclick="closeScreen('app-quiz')" class="flex items-center gap-1 text-amber-500 hover:text-white transition-colors bg-slate-800/80 px-4 py-1.5 rounded-full border border-slate-700">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            <span class="text-sm font-bold font-tajawal">رجوع</span>
+                        </button>
+                        <div class="bg-slate-800 border border-slate-700 px-3 py-1 rounded-xl flex items-center gap-2">
+                            <span class="text-slate-400 text-[10px]">إعداد</span>
+                            <span class="text-white text-xs font-bold font-tajawal">قيس جازي</span>
+                        </div>
+                    </div>
+                    <!-- العنوان -->
                     <div>
-                        <h3 class="text-purple-300 font-bold mb-3 flex items-center gap-2">
-                            <i data-lucide="sparkles" class="w-4 h-4"></i> التفكر (عمق التفكير)
-                        </h3>
-                        <div class="bg-purple-900/40 border border-purple-500/30 p-4 rounded-xl text-center shadow-[0_0_15px_rgba(168,85,247,0.2)]">
-                            <p class="font-tajawal font-bold text-lg text-glow-purple tracking-wide">
-                                " ليس كل من يفكر يتفكر "
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 3. النقد والعقل المدرك -->
-            <section class="neon-card p-8 animate-reveal delay-300">
-                <div class="giant-number">03</div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-400">
-                        <i data-lucide="cpu" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">العقل المدرك والنقد</h2>
-                </div>
-                
-                <div class="space-y-4">
-                    <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:bg-slate-800 transition-colors">
-                        <h3 class="text-emerald-400 font-bold mb-1">النقد والنقد الذاتي</h3>
-                        <p class="text-slate-400 text-sm">التفكير بعقلانية ورؤية مجردة. يُوجه <span class="text-white">للعقل</span> وليس للعاطفة.</p>
-                    </div>
-                    <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:bg-slate-800 transition-colors">
-                        <h3 class="text-emerald-400 font-bold mb-1">العقل في القرآن</h3>
-                        <p class="text-slate-400 text-sm">ذُكر بصورة <span class="text-white">"فعلية"</span> (تفكر وقرار) وليس كاسم ثابت.</p>
-                    </div>
-                    <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50 hover:bg-slate-800 transition-colors">
-                        <h3 class="text-emerald-400 font-bold mb-1">المدرك مقابل الإدراك</h3>
-                        <p class="text-slate-400 text-sm">العقل المدرك يبحث بكيفية عمله، بينما الإدراك هو استيعاب مباشر.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 4. المعرفة والتعلم (تمتد على عمودين) -->
-            <section class="neon-card p-8 md:col-span-2 lg:col-span-2 animate-reveal delay-400">
-                <div class="giant-number">04</div>
-                <div class="flex flex-col md:flex-row gap-8 items-center h-full">
-                    
-                    <div class="w-full md:w-5/12">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="p-3 bg-amber-500/10 rounded-xl border border-amber-500/20 text-amber-400">
-                                <i data-lucide="compass" class="w-6 h-6"></i>
-                            </div>
-                            <h2 class="text-2xl font-tajawal font-bold text-white">المعرفة والتعلم</h2>
-                        </div>
-                        <ul class="space-y-6">
-                            <li>
-                                <h3 class="text-amber-400 font-bold mb-1">المعرفة</h3>
-                                <p class="text-slate-400 text-sm leading-relaxed">هي الفهم والوعي. (العلم والثقافة جزء منها).</p>
-                            </li>
-                            <li>
-                                <h3 class="text-amber-400 font-bold mb-1">التعلم</h3>
-                                <p class="text-slate-400 text-sm leading-relaxed">عملية ذاتية داخلية دافعية لإنتاج المعرفة، تنبع من رغبة الفرد نفسه.</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="w-full md:w-7/12 golden-quote p-6 sm:p-8 rounded-2xl h-full flex flex-col justify-center">
-                        <h4 class="text-amber-500 font-tajawal font-black text-xl mb-4 flex items-center gap-2">
-                            <i data-lucide="crown" class="w-5 h-5"></i>
-                            قاعدة التراكم الذهبية
-                        </h4>
-                        <p class="text-white text-lg font-bold leading-relaxed mb-4">
-                            "التعلم يسبق التعليم وهو أهم منه؛ فنحن ننمو حرفياً من التعلم إلى التعليم."
-                        </p>
-                        <div class="flex items-center gap-3 bg-black/30 p-4 rounded-xl border border-white/5">
-                            <i data-lucide="key" class="w-5 h-5 text-amber-500/70"></i>
-                            <p class="text-slate-300 text-sm">
-                                لتمتلك مخزوناً معرفياً، يجب أولاً أن <span class="text-amber-400 font-bold">تُغير طريقة تفكيرك</span>.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- 5. التطور في التعليم -->
-            <section class="neon-card p-8 animate-reveal delay-500">
-                <div class="giant-number">05</div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400">
-                        <i data-lucide="rocket" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">التطور في التعليم</h2>
-                </div>
-                
-                <div class="relative pl-4 border-r border-slate-700/50 space-y-8 pr-6 mt-4">
-                    <div class="relative">
-                        <div class="absolute w-3 h-3 bg-rose-500 rounded-full -right-[29px] top-2 shadow-[0_0_10px_#f43f5e]"></div>
-                        <h3 class="text-white font-bold mb-2">التدرج في التعليم</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">منهجية أساسية في السلوكية التعليمية لبناء المعرفة بخطوات تراكمية ثابتة.</p>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute w-3 h-3 bg-pink-500 rounded-full -right-[29px] top-2 shadow-[0_0_10px_#ec4899]"></div>
-                        <h3 class="text-white font-bold mb-2">النظرية الحلقية المفتوحة</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">عملية التعليم والتفكير يجب أن تكون منفتحة، ديناميكية لتسمح بالتطور.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 6. التفكير واللغة (تمتد على 3 أعمدة) -->
-            <section class="neon-card p-8 md:col-span-2 lg:col-span-3 animate-reveal delay-[600ms]">
-                <div class="giant-number">06</div>
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 bg-fuchsia-500/10 rounded-xl border border-fuchsia-500/20 text-fuchsia-400">
-                            <i data-lucide="message-square" class="w-6 h-6"></i>
-                        </div>
-                        <h2 class="text-2xl font-tajawal font-bold text-white">التفكير واللغة</h2>
-                    </div>
-                    <div class="bg-fuchsia-900/30 border border-fuchsia-500/30 px-6 py-3 rounded-full shadow-[0_0_20px_rgba(217,70,239,0.15)] inline-flex items-center gap-2">
-                        <div class="w-2 h-2 bg-fuchsia-400 rounded-full animate-ping"></div>
-                        <span class="text-fuchsia-200 font-bold text-sm tracking-wide">القاعدة: التفكير هو أساس عملية اللغة</span>
+                        <h1 class="text-2xl font-tajawal font-black text-white leading-tight">اختبار شامل<br><span class="text-sm text-amber-400">30 سؤال (ضع دائرة)</span></h1>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="group relative bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 hover:bg-slate-800/50 transition-all">
-                        <h3 class="text-xl font-tajawal font-bold text-cyan-400 mb-2">رأي بياجيه</h3>
-                        <p class="text-white mb-3">"الأساس يتشكل في المرحلة العمرية، حيث يلازم الارتقاء المعرفي."</p>
-                        <p class="text-slate-400 text-sm leading-relaxed border-t border-slate-700/50 pt-3">
-                            <span class="text-cyan-500 font-bold">ببساطة:</span> تطور اللغة والتفكير لدى الإنسان مرتبط بعمره ونموه العقلي المستمر.
-                        </p>
-                    </div>
-
-                    <div class="group relative bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 hover:bg-slate-800/50 transition-all">
-                        <h3 class="text-xl font-tajawal font-bold text-pink-400 mb-2 flex justify-between">
-                            رأي واطسون <span class="text-xs bg-pink-500/20 text-pink-300 px-2 py-1 rounded">المدرسة السلوكية</span>
-                        </h3>
-                        <p class="text-white mb-3">"اللغة والتفكير شيء واحد لا ينفصلان."</p>
-                        <p class="text-slate-400 text-sm leading-relaxed border-t border-slate-700/50 pt-3">
-                            <span class="text-pink-500 font-bold">ببساطة:</span> التفكير ما هو إلا "كلام صامت" داخل العقل، فهما وجهان لعملة واحدة.
-                        </p>
-                    </div>
+                <div class="app-content" id="quiz-container">
+                    <!-- سيتم حقن الأسئلة هنا عبر جافاسكربت -->
                 </div>
-            </section>
 
-            <!-- 7. سيكولوجية التفكير (القسم القديم) -->
-            <section class="neon-card p-8 md:col-span-1 animate-reveal delay-[700ms]">
-                <div class="giant-number">07</div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-400">
-                        <i data-lucide="fingerprint" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">سيكولوجية التفكير</h2>
-                </div>
-                
-                <div class="space-y-5">
-                    <div class="bg-indigo-900/20 p-4 rounded-xl border border-indigo-500/20">
-                        <h3 class="text-indigo-300 font-bold mb-1 flex items-center gap-2">
-                            <i data-lucide="eye" class="w-4 h-4"></i> الشعور واللاشعور
-                        </h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            <span class="text-white font-semibold">الشعور:</span> هو ما ندركه بوعي.<br>
-                            <span class="text-white font-semibold">اللاشعور (العقل الباطن):</span> هو المحرك الخفي الذي <span class="text-indigo-400 font-bold">يحدد طريقة تفكيرنا</span>.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50">
-                        <h3 class="text-indigo-300 font-bold mb-1 flex items-center gap-2">
-                            <i data-lucide="heart-pulse" class="w-4 h-4"></i> استشعار القيمة
-                        </h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            نحن إذا لم نستشعر القيمة، مهما تعلمنا فلن ننجح. دلالة المفاهيم تكمن في عمق التفكير.
-                        </p>
-                    </div>
-
-                    <!-- ملاحظة الأنثروبولوجيا -->
-                    <div class="mt-4 p-3 border-r-2 border-indigo-500 bg-gradient-to-l from-indigo-500/10 to-transparent">
-                        <p class="text-slate-300 text-sm font-semibold">
-                            <span class="text-indigo-400">علم الإنسان:</span> أساس الحضارة هي أمومية وليست أبوية.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 8. مفارقات وخلل التفكير (القسم القديم) -->
-            <section class="neon-card p-8 md:col-span-2 animate-reveal delay-[800ms]">
-                <div class="giant-number">08</div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-red-500/10 rounded-xl border border-red-500/20 text-red-400">
-                        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">مفارقات وخلل العقل</h2>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 h-[calc(100%-5rem)]">
-                    
-                    <div class="flex flex-col justify-center bg-red-900/10 p-6 rounded-2xl border border-red-500/20 relative overflow-hidden group">
-                        <div class="absolute -right-4 -top-4 text-red-500/10 group-hover:scale-110 transition-transform">
-                            <i data-lucide="brain-circuit" class="w-24 h-24"></i>
-                        </div>
-                        <h3 class="text-red-400 font-bold text-lg mb-3 z-10">أين يكمن الخلل؟</h3>
-                        <p class="text-slate-300 leading-relaxed z-10 text-lg font-semibold">
-                            "الخلل يكون في <span class="text-red-400 border-b border-red-400/50 pb-1">طريقة تفكيرنا</span> لا في سلوكنا."
-                        </p>
-                        <p class="text-slate-500 text-sm mt-3 z-10">فالسلوكيات الظاهرة هي مجرد نتيجة ومرآة لما يدور في العقل.</p>
-                    </div>
-
-                    <div class="space-y-4 flex flex-col justify-center">
-                        <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800 transition-colors">
-                            <h3 class="text-orange-400 font-bold mb-2 flex items-center gap-2">
-                                <i data-lucide="zap-off" class="w-4 h-4"></i> التصادم الداخلي
-                            </h3>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                نحن في صراع مستمر؛ <span class="text-white">متصادمون مع عقولنا ولسنا متجانسين</span> معها.
-                            </p>
-                        </div>
-
-                        <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800 transition-colors relative overflow-hidden">
-                            <div class="absolute left-0 top-0 h-full w-1 bg-orange-500"></div>
-                            <h3 class="text-orange-400 font-bold mb-2 flex items-center gap-2">
-                                <i data-lucide="user-x" class="w-4 h-4"></i> المتعلم الجاهل!
-                            </h3>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                الشهادة لا تنفي الجهل، وهذا يفسر وجود <span class="text-white font-bold">"العديد من المتعلمين الجهلة"</span> في مجتمعنا.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- 9. ثلاثية الفهم (إضافة جديدة من الصورة 1) -->
-            <section class="neon-card p-8 animate-reveal delay-[900ms]">
-                <div class="giant-number">09</div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-teal-500/10 rounded-xl border border-teal-500/20 text-teal-400">
-                        <i data-lucide="network" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">ثلاثية الفهم والإدراك</h2>
-                </div>
-                <ul class="space-y-5">
-                    <li class="flex gap-4 group/item items-start">
-                        <div class="mt-2 w-2 h-2 rounded-sm bg-teal-500 shadow-[0_0_8px_#14b8a6] group-hover/item:rotate-45 transition-transform"></div>
-                        <p class="text-slate-300 leading-relaxed">
-                            <strong class="text-teal-300 block mb-1">المهارة والفطرة:</strong>
-                            المهارة تكتسب، وقد تكون بالفطرة، ولكن الأساس هو <span class="text-white border-b border-teal-500/50">كيف نجعلها تنمو</span>.
-                        </p>
-                    </li>
-                    <li class="flex gap-4 group/item items-start">
-                        <div class="mt-2 w-2 h-2 rounded-sm bg-teal-500 shadow-[0_0_8px_#14b8a6] group-hover/item:rotate-45 transition-transform"></div>
-                        <p class="text-slate-300 leading-relaxed">
-                            <strong class="text-teal-300 block mb-1">طبيعة الإنسان:</strong>
-                            الإنسان بطبعه يُحب <span class="text-white font-bold">الحرية</span>.
-                        </p>
-                    </li>
-                    <li class="flex gap-4 group/item items-start">
-                        <div class="mt-2 w-2 h-2 rounded-sm bg-teal-500 shadow-[0_0_8px_#14b8a6] group-hover/item:rotate-45 transition-transform"></div>
-                        <p class="text-slate-300 leading-relaxed">
-                            <strong class="text-teal-300 block mb-1">حقيقة المعرفة:</strong>
-                            المعرفة <span class="text-red-400">لا تُحفظ</span>، بل تُفهم وتُدرك.
-                        </p>
-                    </li>
-                    <li class="flex gap-4 group/item items-start">
-                        <div class="mt-2 w-2 h-2 rounded-sm bg-teal-500 shadow-[0_0_8px_#14b8a6] group-hover/item:rotate-45 transition-transform"></div>
-                        <p class="text-slate-300 leading-relaxed">
-                            <strong class="text-teal-300 block mb-1">فلسفة القيمة:</strong>
-                            هي فكرٌ وتفكر، وتتجسد في قيمة <span class="bg-teal-500/20 text-teal-200 px-2 py-0.5 rounded text-sm">إعادة إنتاج الذات</span>.
-                        </p>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 10. النظرية السلوكية ومقولة سقراط (إضافة جديدة من الصورة 2) -->
-            <section class="neon-card p-8 animate-reveal delay-[1000ms]">
-                <div class="giant-number">10</div>
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="p-3 bg-yellow-500/10 rounded-xl border border-yellow-500/20 text-yellow-400">
-                        <i data-lucide="message-circle-question" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">النظرية السلوكية</h2>
-                </div>
-                
-                <div class="space-y-6">
-                    <!-- مقولة سقراط -->
-                    <div class="relative bg-gradient-to-br from-yellow-900/30 to-transparent border border-yellow-500/30 p-6 rounded-2xl text-center shadow-[0_0_15px_rgba(234,179,8,0.1)]">
-                        <i data-lucide="quote" class="absolute top-4 right-4 w-8 h-8 text-yellow-500/20 rotate-180"></i>
-                        <h3 class="text-yellow-500 font-bold mb-3 text-sm tracking-wider">مقولة سقراط</h3>
-                        <p class="font-tajawal font-black text-2xl text-white mb-4">
-                            " تَكَلَّم حَتَّى أَرَاك "
-                        </p>
-                        
-                        <div class="inline-block bg-slate-900/80 border border-slate-600 rounded-lg px-4 py-2 mt-2">
-                            <p class="text-slate-300 text-sm flex items-center gap-2">
-                                <span class="text-yellow-400 font-bold">؟؟</span> 
-                                هل لازم دائماً أتكلم عشان تشوفني؟ 
-                                <span class="text-yellow-400 font-bold">؟؟</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- ملاحظة خراب الذات -->
-                    <div class="flex items-center gap-3 bg-red-900/20 p-4 rounded-xl border border-red-500/20">
-                        <i data-lucide="trending-down" class="w-5 h-5 text-red-400 shrink-0"></i>
-                        <p class="text-slate-300 text-sm font-semibold">
-                            ملاحظة سلوكية: <span class="text-red-300">نحن نميل لخراب الذات.</span>
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 11. إشكاليات التعلم (إضافة جديدة من الصورة 2) -->
-            <section class="neon-card p-8 animate-reveal delay-[1100ms] md:col-span-2 lg:col-span-1">
-                <div class="giant-number">11</div>
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-sky-500/10 rounded-xl border border-sky-500/20 text-sky-400">
-                        <i data-lucide="book-open-check" class="w-6 h-6"></i>
-                    </div>
-                    <h2 class="text-2xl font-tajawal font-bold text-white">إشكاليات التعلم</h2>
-                </div>
-                
-                <div class="space-y-6 flex flex-col h-[calc(100%-4rem)] justify-between">
-                    <div class="space-y-4">
-                        <div class="flex gap-3 items-center p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
-                            <div class="w-8 h-8 rounded-lg bg-sky-500/20 flex items-center justify-center shrink-0">
-                                <i data-lucide="target" class="w-4 h-4 text-sky-400"></i>
-                            </div>
-                            <p class="text-slate-300 text-sm">الدافعية يجب أن تكون <span class="text-white font-bold">للتعلم</span> وليس للتعليم.</p>
-                        </div>
-                        
-                        <div class="flex gap-3 items-center p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
-                            <div class="w-8 h-8 rounded-lg bg-sky-500/20 flex items-center justify-center shrink-0">
-                                <i data-lucide="search-x" class="w-4 h-4 text-sky-400"></i>
-                            </div>
-                            <p class="text-slate-300 text-sm">لدينا مشكلة حقيقية في إدراك <span class="text-white font-bold">ماهية التعلم والتعليم</span>.</p>
-                        </div>
-                    </div>
-
-                    <!-- السؤال الجوهري -->
-                    <div class="bg-gradient-to-r from-sky-900/40 to-slate-800/40 border-r-4 border-sky-500 p-5 rounded-l-xl mt-4">
-                        <h4 class="text-sky-400 font-bold mb-2 flex items-center gap-2">
-                            <i data-lucide="lightbulb-off" class="w-5 h-5"></i> سؤال مُهم للجيل
-                        </h4>
-                        <p class="text-white font-tajawal text-lg leading-relaxed">
-                            "لماذا وُجدت التكنولوجيا والمصادر، ولم يُبْنَ جيلٌ جيد؟"
-                        </p>
-                    </div>
-                </div>
-            </section>
+                <div class="home-bar-container" onclick="closeScreen('app-quiz')"><div class="home-bar"></div></div>
+            </div>
 
         </div>
-        
-        <!-- التذييل -->
-        <footer class="mt-20 text-center border-t border-white/10 pt-8 animate-reveal delay-[1100ms]">
-            <p class="text-slate-500 text-sm flex items-center justify-center gap-2">
-                مصمم خصيصاً للمراجعة الذكية والعميقة <i data-lucide="sparkles" class="w-4 h-4 text-cyan-500"></i>
-            </p>
-        </footer>
     </div>
 
-    <!-- تفعيل الأيقونات والماوس افيكت -->
     <script>
         lucide.createIcons();
-        
-        // تأثير الإضاءة التفاعلية مع حركة الماوس للبطاقات
-        document.querySelectorAll('.neon-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+
+        // تحديث الساعة
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            document.getElementById('date').textContent = now.toLocaleDateString('ar-JO', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // دوال التنقل
+        function unlockPhone() {
+            document.getElementById('lock-screen').classList.remove('active');
+            document.getElementById('home-screen').classList.add('active');
+        }
+
+        function openScreen(screenId) {
+            document.getElementById('home-screen').classList.remove('active');
+            document.getElementById(screenId).classList.add('active');
+            
+            // إذا فتح الكويز لأول مرة، قم بتحميله
+            if(screenId === 'app-quiz' && !quizGenerated) {
+                renderQuiz();
+            }
+        }
+
+        function closeScreen(screenId) {
+            document.getElementById(screenId).classList.remove('active');
+            document.getElementById('home-screen').classList.add('active');
+        }
+
+        // ==============================================
+        // منطق الاختبار (Quiz Logic)
+        // ==============================================
+        const quizQuestions = [
+            { q: "أول أخطاء التفكير هو؟", options: ["التسرع في الحكم", "التمركز حول الذات", "العاطفة المفرطة"], ans: 1 },
+            { q: "الخلل الحقيقي يكمن دائماً في؟", options: ["السلوك الظاهر", "المجتمع المحيط", "طريقة تفكيرنا"], ans: 2 },
+            { q: "العقل في القرآن الكريم ورد بصورة؟", options: ["اسمية ثابتة", "فعلية (عملية تفكير)", "صفة مجردة"], ans: 1 },
+            { q: "من هو الذي يبحث في كيفية عمل العقل نفسه؟", options: ["العقل المدرك", "اللاشعور", "الإدراك"], ans: 0 },
+            { q: "التفكير عبارة عن؟", options: ["خطة هادفة ومهارة", "رد فعل عشوائي", "مجرد استيعاب مباشر"], ans: 0 },
+            { q: "مقولة 'ليس كل من يفكر يتفكر' تعني أن التفكر هو؟", options: ["مرحلة أقل من التفكير", "مرحلة متقدمة وعميقة", "مرادف تماماً للتفكير"], ans: 1 },
+            { q: "حسب الملاحظات، المعرفة عبارة عن؟", options: ["العلم فقط", "حفظ المعلومات", "الفهم والوعي"], ans: 2 },
+            { q: "القاعدة الذهبية تنص على أن؟", options: ["التعلم يسبق التعليم", "التعليم يسبق التعلم", "التعلم والتعليم نفس الشيء"], ans: 0 },
+            { q: "اليقين المطلق يعتبر من؟", options: ["مستويات الإدراك البسيط", "مراحل الشك", "أعمق مراحل الإيمان"], ans: 2 },
+            { q: "حسب علم الإنسان (الأنثروبولوجيا) أساس الحضارة هي؟", options: ["أمومية", "أبوية", "مشتركة"], ans: 0 },
+            { q: "المحرك الخفي الذي يحدد طريقة تفكيرنا هو؟", options: ["الشعور", "العقل الباطن (اللاشعور)", "البصر"], ans: 1 },
+            { q: "أكثر قيمة من الاعتراف (سواء كان فكرياً أو وجودياً) هو؟", options: ["المعرفة", "القرار", "التفكير"], ans: 1 },
+            { q: "مقولة 'رأيي صواب يحتمل الخطأ' تعود لـ؟", options: ["الخوارزمي", "الإمام الغزالي", "الإمام الشافعي"], ans: 2 },
+            { q: "مقارنة بالاستماع، يعتبر الإصغاء؟", options: ["أعمق وأكثر تركيزاً", "نفس الشيء تماماً", "أقل تركيزاً"], ans: 0 },
+            { q: "الرؤيَة (بالتاء المربوطة) تعني؟", options: ["ما يراه النائم في حلمه", "ما نراه في الواقع أو بالبصيرة", "التخيل المستقبلي"], ans: 1 },
+            { q: "العالم الذي ربط تطور التفكير بالمرحلة العمرية والارتقاء المعرفي هو؟", options: ["بياجيه", "واطسون", "فرويد"], ans: 0 },
+            { q: "العالم الذي قال أن 'اللغة والتفكير شيء واحد لا ينفصلان' هو؟", options: ["بياجيه", "واطسون", "أرسطو"], ans: 1 },
+            { q: "النقد الذاتي هو التفكير برؤية مجردة، ويُوجه إلى؟", options: ["العاطفة", "السلوك", "العقل"], ans: 2 },
+            { q: "التدرج في التعليم يعتبر منهجية؟", options: ["سلوكية تعليمية", "عشوائية", "معرفية فقط"], ans: 0 },
+            { q: "النظرية التي تؤكد أن عملية التعليم يجب أن تكون منفتحة وديناميكية؟", options: ["النظرية المعرفية", "النظرية الحلقية المفتوحة", "النظرية السلوكية"], ans: 1 },
+            { q: "الشهادة الأكاديمية لا تنفي الجهل، وهذا يفسر مصطلح؟", options: ["المتعلم الجاهل", "الجهل المركب", "الأمية"], ans: 0 },
+            { q: "مأساة التفكير تبرز بوضوح وتُختبر في؟", options: ["الخيال", "الكتب", "الواقع"], ans: 2 },
+            { q: "بدون هذا الشيء، مهما تعلمنا فلن ننجح حقاً؟", options: ["الحصول على شهادة", "استشعار القيمة", "حفظ المقررات"], ans: 1 },
+            { q: "النظرية المعرفية تعتمد بشكل أساسي على؟", options: ["فك الرموز للوصول للحقيقة", "التكرار المستمر", "التلقين"], ans: 0 },
+            { q: "نحن نختلف لنتفق، والهدف الأسمى من ذلك هو أن؟", options: ["نثبت ذواتنا", "نتعلم كيف نفكر في المعرفة", "ننتصر في النقاش"], ans: 1 },
+            { q: "عبارة 'نحتاج الحقيقة ولكننا لا نعترف بالخطأ' تدل على مفارقة في؟", options: ["التمركز حول الذات", "الذكاء العاطفي", "قوة الشخصية"], ans: 0 },
+            { q: "التفكير الاستنباطي والتفكير الاستقرائي هما من أنواع؟", options: ["التفكير السلبي", "التفكير الهادف", "التفكير العشوائي"], ans: 1 },
+            { q: "الإدراك مقارنة بالعقل المدرك هو؟", options: ["عملية الاستيعاب المباشرة", "البحث في آلية عمل العقل", "مرحلة متقدمة من التفكر"], ans: 0 },
+            { q: "ما ندركه بوعينا في اللحظة الحالية يسمى؟", options: ["اللاشعور", "الشعور", "اليقين"], ans: 1 },
+            { q: "الإشكالية الحقيقية التي نعيشها تتطلب إعادة إنتاج العقلانية من خلال؟", options: ["تفكير ناقد حقيقي", "تفكير عاطفي", "تجنب النقاش"], ans: 0 }
+        ];
+
+        let quizGenerated = false;
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = ''; // تفريغ
+            
+            quizQuestions.forEach((q, index) => {
+                let optionsHTML = '';
+                q.options.forEach((opt, optIndex) => {
+                    optionsHTML += `
+                        <label class="quiz-option" id="opt-${index}-${optIndex}">
+                            <input type="radio" name="q${index}" value="${optIndex}" onchange="selectOption(${index}, ${optIndex})">
+                            ${opt}
+                        </label>
+                    `;
+                });
+
+                const cardHTML = `
+                    <div class="quiz-card" id="qcard-${index}">
+                        <h3 class="text-white font-bold mb-3 font-tajawal"><span class="text-amber-400">${index + 1}.</span> ${q.q}</h3>
+                        <div class="space-y-2">
+                            ${optionsHTML}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
             });
-        });
+
+            container.innerHTML += `<button class="btn-submit" onclick="submitQuiz()">عرض النتيجة</button>`;
+            container.innerHTML += `<div id="quiz-result" class="mt-6 text-center font-tajawal text-xl font-bold pb-10"></div>`;
+            quizGenerated = true;
+        }
+
+        function selectOption(qIndex, optIndex) {
+            for(let i=0; i<3; i++) {
+                const optEl = document.getElementById(`opt-${qIndex}-${i}`);
+                if(optEl) optEl.classList.remove('selected');
+            }
+            document.getElementById(`opt-${qIndex}-${optIndex}`).classList.add('selected');
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            let answered = 0;
+
+            quizQuestions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const card = document.getElementById(`qcard-${index}`);
+                
+                for(let i=0; i<3; i++) {
+                    const el = document.getElementById(`opt-${index}-${i}`);
+                    if(el) { el.classList.remove('correct'); el.classList.remove('wrong'); }
+                }
+
+                if(selected) {
+                    answered++;
+                    const userVal = parseInt(selected.value);
+                    if(userVal === q.ans) {
+                        score++;
+                        document.getElementById(`opt-${index}-${userVal}`).classList.add('correct');
+                    } else {
+                        document.getElementById(`opt-${index}-${userVal}`).classList.add('wrong');
+                        document.getElementById(`opt-${index}-${q.ans}`).classList.add('correct');
+                    }
+                } else {
+                    document.getElementById(`opt-${index}-${q.ans}`).classList.add('correct');
+                }
+            });
+
+            const resultDiv = document.getElementById('quiz-result');
+            if(answered < 30) {
+                resultDiv.innerHTML = `<span class="text-red-400">لقد أجبت على ${answered} من 30 سؤال.<br> نتيجتك هي: ${score} / 30</span>`;
+            } else {
+                resultDiv.innerHTML = `<span class="text-emerald-400">اكتمل الاختبار!<br> نتيجتك النهائية هي: ${score} / 30</span>`;
+            }
+            
+            document.getElementById('app-quiz').querySelector('.app-content').scrollTo({
+                top: document.getElementById('quiz-result').offsetTop,
+                behavior: 'smooth'
+            });
+        }
     </script>
 </body>
 </html>
