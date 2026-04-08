@@ -3,6 +3,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <!-- إعدادات الشاشة الأساسية لجعل الموقع يتصرف كتطبيق هاتف حقيقي -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>تطبيقات التفكير الناقد - قيس جازي</title>
     
@@ -93,7 +94,6 @@
         .app-quiz { background: linear-gradient(135deg, #f59e0b, #ef4444); border: 1px solid rgba(255,255,255,0.2); }
         .app-alert { background: linear-gradient(135deg, #ef4444, #991b1b); border: 1px solid rgba(255,255,255,0.2); }
 
-        /* الشارة الحمراء للتنبيه */
         .notification-badge {
             position: absolute; top: -5px; right: -5px; background: #ef4444; color: white;
             width: 24px; height: 24px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
@@ -124,7 +124,6 @@
         }
         .info-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--card-accent); }
 
-        /* تنسيق الشرح الإضافي */
         .explain-box {
             background: rgba(0,0,0,0.25); border-radius: 12px; padding: 12px; margin-top: 8px;
             border-right: 2px solid var(--card-accent);
@@ -196,7 +195,7 @@
     </div>
 
     <!-- ==============================================
-            3. تطبيق الملخص الشامل (تمت إضافة كل الملاحظات الجديدة)
+            3. تطبيق الملخص الشامل 
             ============================================== -->
     <div id="app-summary" class="screen inner-app-screen">
         <div class="app-header">
@@ -214,7 +213,7 @@
         </div>
 
         <div class="app-content text-slate-200">
-            <!-- القسم 1: أسس المعرفة (محدث) -->
+            <!-- القسم 1 -->
             <div class="info-card" style="--card-accent: #3b82f6;">
                 <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="layers" class="text-blue-400 w-6 h-6"></i> أسس التفكير والمعرفة</h2>
                 <div class="space-y-4 text-base leading-relaxed">
@@ -231,7 +230,7 @@
                 </div>
             </div>
 
-            <!-- القسم 2: مستويات العقل (محدث) -->
+            <!-- القسم 2 -->
             <div class="info-card" style="--card-accent: #a855f7;">
                 <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="brain" class="text-purple-400 w-6 h-6"></i> مستويات العقل والتفكير</h2>
                 <div class="space-y-4 text-base leading-relaxed">
@@ -247,7 +246,7 @@
                 </div>
             </div>
 
-            <!-- القسم 3: التعلم والتطور (محدث) -->
+            <!-- القسم 3 -->
             <div class="info-card" style="--card-accent: #f59e0b;">
                 <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="graduation-cap" class="text-amber-400 w-6 h-6"></i> التعلم، النظريات والتطور</h2>
                 <div class="space-y-4 text-base leading-relaxed">
@@ -263,7 +262,7 @@
                 </div>
             </div>
 
-            <!-- القسم 4: أخطاء التفكير (محدث) -->
+            <!-- القسم 4 -->
             <div class="info-card" style="--card-accent: #ef4444;">
                 <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="alert-triangle" class="text-red-400 w-6 h-6"></i> أخطاء ومفارقات التفكير</h2>
                 <div class="space-y-4 text-base leading-relaxed">
@@ -279,14 +278,14 @@
                 </div>
             </div>
 
-            <!-- القسم 5: مفاهيم لغوية ولغة (مدمج) -->
-            <div class="info-card" style="--card-accent: #d946ef; margin-bottom: 40px;">
-                <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="message-square" class="text-fuchsia-400 w-6 h-6"></i> مفاهيم، لغة، وعلماء</h2>
+            <!-- القسم 5 -->
+            <div class="info-card" style="--card-accent: #10b981;">
+                <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="book" class="text-emerald-400 w-6 h-6"></i> مفاهيم، لغة، وعلماء</h2>
                 <div class="space-y-4 text-base leading-relaxed">
-                    <p><strong class="text-fuchsia-300">الرؤية والرؤيا:</strong> الرؤية بالبصيرة والواقع. الرؤيا في المنام.</p>
-                    <p><strong class="text-fuchsia-300">الإصغاء والاستماع:</strong> الإصغاء أعمق ويتطلب تركيزاً وتدبراً.</p>
-                    <div class="bg-fuchsia-900/20 p-3 rounded-xl border border-fuchsia-500/30">
-                        <p class="font-bold text-fuchsia-300 text-sm mb-2">قاعدة: التفكير هو أساس عملية اللغة</p>
+                    <p><strong class="text-emerald-300">الرؤية والرؤيا:</strong> الرؤية بالبصيرة والواقع. الرؤيا في المنام.</p>
+                    <p><strong class="text-emerald-300">الإصغاء والاستماع:</strong> الإصغاء أعمق ويتطلب تركيزاً وتدبراً.</p>
+                    <div class="bg-emerald-900/20 p-3 rounded-xl border border-emerald-500/30">
+                        <p class="font-bold text-emerald-300 text-sm mb-2">قاعدة: التفكير هو أساس عملية اللغة</p>
                         <p class="text-sm text-slate-300 mb-1"><strong class="text-white">بياجيه:</strong> الأساس يتشكل في المرحلة العمرية ويلازم الارتقاء المعرفي.</p>
                         <p class="text-sm text-slate-300"><strong class="text-white">واطسون:</strong> اللغة والتفكير شيء واحد لا ينفصلان (كلام صامت).</p>
                     </div>
@@ -320,7 +319,7 @@
     </div>
 
     <!-- ==============================================
-            5. تطبيق الإعلان الهام (الجديد)
+            5. تطبيق الإعلان الهام
             ============================================== -->
     <div id="app-alert" class="screen inner-app-screen">
         <div class="app-header" style="border-bottom-color: rgba(239, 68, 68, 0.2);">
@@ -379,13 +378,20 @@
     <script>
         lucide.createIcons();
 
-        // تحديث الساعة (شاشة القفل)
+        // تحديث الساعة إلى نظام 12 ساعة (شاشة القفل)
         function updateClock() {
             const now = new Date();
             let hours = now.getHours();
             let minutes = now.getMinutes();
-            hours = hours < 10 ? '0' + hours : hours;
+            
+            // تحويل الساعات إلى نظام 12 ساعة
+            hours = hours % 12;
+            hours = hours ? hours : 12; // إذا كانت الساعة 0 (منتصف الليل)، اجعلها 12
+            
+            // إضافة صفر للدقائق إذا كانت أقل من 10
             minutes = minutes < 10 ? '0' + minutes : minutes;
+            
+            // تحديث العرض
             document.getElementById('clock').textContent = `${hours}:${minutes}`;
 
             const options = { weekday: 'long', month: 'long', day: 'numeric' };
@@ -394,7 +400,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // دوال التنقل المخصصة
+        // دوال التنقل
         function unlockPhone() {
             document.getElementById('lock-screen').classList.add('unlocked');
             document.getElementById('lock-screen').classList.remove('active');
