@@ -1,9 +1,8 @@
-```html
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- إعدادات الشاشة الأساسية لجعل الموقع يتصرف كتطبيق هاتف حقيقي -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>تطبيقات التفكير الناقد - قيس جازي</title>
     
@@ -150,7 +149,7 @@
 <body>
 
     <!-- ==============================================
-            1. شاشة القفل
+            1. شاشة القفل (توقيت 12 ساعة)
             ============================================== -->
     <div id="lock-screen" class="screen active" onclick="unlockPhone()">
         <div class="lock-icon"><i data-lucide="lock" class="w-8 h-8 text-white drop-shadow-lg"></i></div>
@@ -195,7 +194,7 @@
     </div>
 
     <!-- ==============================================
-            3. تطبيق الملخص الشامل 
+            3. تطبيق المرجع الشامل
             ============================================== -->
     <div id="app-summary" class="screen inner-app-screen">
         <div class="app-header">
@@ -213,82 +212,84 @@
         </div>
 
         <div class="app-content text-slate-200">
-            <!-- القسم 1 -->
+            <!-- القسم 1: الإضاءات الفلسفية (الجديد) -->
+            <div class="info-card" style="--card-accent: #f43f5e;">
+                <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="sparkles" class="text-rose-400 w-6 h-6"></i> إضاءات فلسفية واجتماعية</h2>
+                <div class="space-y-4 text-base leading-relaxed">
+                    <p><strong class="text-rose-300">مؤسس علم الأخلاق:</strong> هو العالم والفيلسوف (سقراط).</p>
+                    <p><strong class="text-rose-300">التربية والتنشئة:</strong> 
+                        <div class="explain-box">
+                            <span class="text-sm text-slate-300">يقول جبران خليل جبران: <strong class="text-rose-300">"أولادكم ليسوا لكم، أولادكم أبناء الحياة المشتاقة"</strong>. أي أننا نربيهم للمستقبل وليس لامتلاكهم.</span>
+                        </div>
+                    </p>
+                    <p><strong class="text-rose-300">القيمة والثمن:</strong> هنالك فرق شاسع بين أن يكون للشيء قيمة (معنوية/أخلاقية) وأن يكون له ثمن (مادي بحت).</p>
+                    <p><strong class="text-rose-300">الصدق والقناعة:</strong> ليس مهماً أن تكون مقتنعاً، ولكن من الضروري جداً أن تكون صادقاً.</p>
+                </div>
+            </div>
+
+            <!-- القسم 2: أسس التفكير -->
             <div class="info-card" style="--card-accent: #3b82f6;">
                 <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="layers" class="text-blue-400 w-6 h-6"></i> أسس التفكير والمعرفة</h2>
                 <div class="space-y-4 text-base leading-relaxed">
-                    <p><strong class="text-blue-300">إعادة إنتاج العقلانية:</strong> الإشكالية الحقيقية في واقعنا تتطلب تفكيراً ناقداً.</p>
                     <p><strong class="text-blue-300">إعادة تشرّب الذهنية العقلية:</strong> كيف نحل أسلوب الحوار؟ يتم ذلك بإعادة تشرب الذهنية العقلية بالتفكير الناقد المنطقي المتناغم مع الرؤية العلمية المجردة.</p>
                     <p><strong class="text-blue-300">التصنيف المعرفي والهندسة المعرفية:</strong> 
                         <div class="explain-box">
-                            <span class="text-sm text-slate-300">الهندسة المعرفية هي بناء هيكل المعرفة. ليكون لديك مخزون معرفي، يجب أولاً أن تغير طريقة تفكيرك. كما أن <strong class="text-blue-300">التصنيف المعرفي</strong> يعتمد على دلالة المعنى وفهمه.</span>
+                            <span class="text-sm text-slate-300">الهندسة المعرفية هي بناء هيكل المعرفة، ولتمتلكه يجب أن تغير طريقة تفكيرك. التصنيف المعرفي يعتمد على دلالة المعنى.</span>
                         </div>
                     </p>
-                    <p><strong class="text-blue-300">المعرفة ونظرية المعرفة:</strong> المعرفة هي الفهم، بينما نظرية المعرفة تبحث في كيفية الوصول لهذه المعرفة.</p>
-                    <p><strong class="text-blue-300">فلسفة الخطاب القرآني:</strong> دعوة مستمرة للتفكر وإعمال العقل (لم يرد العقل اسماً بل فعلاً).</p>
                     <p><strong class="text-blue-300">قوة القرار:</strong> القرار أكثر قيمة من الاعتراف.</p>
                 </div>
             </div>
 
-            <!-- القسم 2 -->
+            <!-- القسم 3: مستويات العقل -->
             <div class="info-card" style="--card-accent: #a855f7;">
                 <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="brain" class="text-purple-400 w-6 h-6"></i> مستويات العقل والتفكير</h2>
                 <div class="space-y-4 text-base leading-relaxed">
-                    <p><strong class="text-purple-300">التفكير الهادف:</strong> خطة هادفة تنتقل من سؤال إلى مهارة. وينقسم إلى:
-                        <br><span class="text-white text-sm">1. التفكير الاستنباطي. &nbsp;&nbsp; 2. التفكير الاستقرائي (والذي يبنى عليه <strong>علم المستقبل</strong>).</span>
-                    </p>
+                    <p><strong class="text-purple-300">التفكير الهادف:</strong> ينتقل من سؤال إلى مهارة. (استنباطي واستقرائي الذي يبنى عليه <strong>علم المستقبل</strong>).</p>
                     <p><strong class="text-purple-300">علامة العقل المتعلم:</strong>
                         <div class="explain-box">
-                            <span class="text-sm text-slate-300">يقول أرسطو: <strong class="text-purple-300">"علامة العقل المتعلم هي قدرته على تداول الفكرة دون أن يتقبلها"</strong>. (أي القدرة على مناقشة فكرة بموضوعية دون ضرورة الإيمان بها).</span>
+                            <span class="text-sm text-slate-300">يقول أرسطو: <strong class="text-purple-300">"علامة العقل المتعلم هي قدرته على تداول الفكرة دون أن يتقبلها"</strong>.</span>
                         </div>
                     </p>
-                    <p><strong class="text-purple-300">الشعور واللاشعور:</strong> العقل الباطن (اللاشعور) هو المحرك الخفي الذي يحدد طريقة تفكيرنا الحقيقية.</p>
+                    <p><strong class="text-purple-300">الشعور واللاشعور:</strong> العقل الباطن (اللاشعور) هو المحرك الخفي لطريقة تفكيرنا.</p>
                 </div>
             </div>
 
-            <!-- القسم 3 -->
+            <!-- القسم 4: النظريات والتطور -->
             <div class="info-card" style="--card-accent: #f59e0b;">
-                <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="graduation-cap" class="text-amber-400 w-6 h-6"></i> التعلم، النظريات والتطور</h2>
+                <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="graduation-cap" class="text-amber-400 w-6 h-6"></i> النظريات والتعلم</h2>
                 <div class="space-y-4 text-base leading-relaxed">
-                    <p><strong class="text-amber-300">التعلم يسبق التعليم:</strong> التعلم دافعية لإنتاج المعرفة وهو أهم من التعليم.</p>
-                    <p><strong class="text-amber-300">التطور مقابل التغير:</strong>
-                        <div class="explain-box">
-                            <span class="text-sm text-slate-300">"دائماً عملية التطور تكون أعمق من مفهوم التغير، لأن التغير قد يكون سلبياً أو إيجابياً، أما التطور فهو بناء وإيجابية".</span>
-                        </div>
-                    </p>
-                    <p><strong class="text-amber-300">التطوير البنائي للمرأة:</strong> المرأة دورها أهم في التطوير البنائي للمجتمع.</p>
-                    <p><strong class="text-amber-300">التكامل وليس التفاضل:</strong> إن أردت أن تتفنن في التفكير الناقد، تذكر أن علاقتنا البشرية هي تكامل وليست تفاضل.</p>
-                    <p><strong class="text-amber-300">نظرية التحدي والاستجابة:</strong> المجتمعات تنمو وتتطور بناءً على استجابتها للتحديات التي تواجهها.</p>
+                    <p><strong class="text-amber-300">التطور مقابل التغير:</strong> عملية التطور تكون أعمق وأشمل من مفهوم التغير (لأن التغير قد يكون سلبياً، أما التطور فهو بناء وإيجابية).</p>
+                    <p><strong class="text-amber-300">التكامل وليس التفاضل:</strong> علاقتنا البشرية في التفكير الناقد هي تكامل وليست تفاضل.</p>
+                    <p><strong class="text-amber-300">نظرية التحدي والاستجابة:</strong> المجتمعات تنمو بناءً على استجابتها للتحديات.</p>
+                    <p><strong class="text-amber-300">دور المرأة:</strong> دورها أهم في التطوير البنائي للمجتمع.</p>
                 </div>
             </div>
 
-            <!-- القسم 4 -->
+            <!-- القسم 5: أخطاء ومفارقات -->
             <div class="info-card" style="--card-accent: #ef4444;">
                 <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="alert-triangle" class="text-red-400 w-6 h-6"></i> أخطاء ومفارقات التفكير</h2>
                 <div class="space-y-4 text-base leading-relaxed">
-                    <p><strong class="text-red-300">أخطاء التفكير الأربعة الرئيسية:</strong></p>
-                    <ol class="list-decimal list-inside text-sm space-y-2 text-slate-300 pl-2">
+                    <p><strong class="text-red-300">أخطاء التفكير الرئيسية:</strong></p>
+                    <ul class="list-disc list-inside text-sm space-y-2 text-slate-300 pl-2">
                         <li><strong class="text-white">التمركز حول الذات:</strong> (نحتاج الحقيقة ولا نعترف بالخطأ).</li>
-                        <li><strong class="text-white">عدم احترام الآراء:</strong> غياب مبدأ الشافعي "رأيي صواب يحتمل الخطأ ورأي غيري خطأ يحتمل الصواب".</li>
-                        <li><strong class="text-white">التحيز:</strong> وهو خطأ فادح يعمي عن الرؤية العلمية المجردة.</li>
-                        <li><strong class="text-white">التكبر والغرور:</strong> <span class="bg-red-900/40 px-1 rounded">"من هوى نفس عدو أشد من الشيطان"</span>. التكبر يمنع التعلم.</li>
-                    </ol>
-                    <p class="mt-4"><strong class="text-red-300">التلوث الضوضائي:</strong> من معوقات التفكير ويؤثر على الأسس العلمية التي تتطلب نظرة مجردة وهدوء.</p>
-                    <p><strong class="text-red-300">المتعلم الجاهل:</strong> الخلل في طريقة تفكيرنا لا سلوكنا، والشهادة لا تنفي الجهل إذا تصادمنا مع عقولنا.</p>
+                        <li><strong class="text-white">التحيز:</strong> يعمي عن الرؤية العلمية المجردة.</li>
+                        <li><strong class="text-white">التكبر والغرور:</strong> "من هوى نفس عدو أشد من الشيطان".</li>
+                    </ul>
+                    <p class="mt-4"><strong class="text-red-300">التلوث الضوضائي:</strong> من معوقات التفكير ويؤثر على الأسس العلمية المجردة.</p>
+                    <p><strong class="text-red-300">المتعلم الجاهل:</strong> الخلل في طريقة تفكيرنا لا سلوكنا، والشهادة لا تنفي الجهل.</p>
                 </div>
             </div>
 
-            <!-- القسم 5 -->
-            <div class="info-card" style="--card-accent: #10b981;">
-                <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="book" class="text-emerald-400 w-6 h-6"></i> مفاهيم، لغة، وعلماء</h2>
+            <!-- القسم 6: التفكير واللغة -->
+            <div class="info-card" style="--card-accent: #d946ef; margin-bottom: 40px;">
+                <h2 class="text-xl font-bold text-white font-tajawal mb-5 flex items-center gap-3"><i data-lucide="message-square" class="text-fuchsia-400 w-6 h-6"></i> مفاهيم ولغويات</h2>
+                <div class="bg-fuchsia-900/20 p-3 rounded-xl border border-fuchsia-500/30 text-center mb-4 text-fuchsia-300 font-bold text-sm">القاعدة: التفكير هو أساس عملية اللغة</div>
                 <div class="space-y-4 text-base leading-relaxed">
-                    <p><strong class="text-emerald-300">الرؤية والرؤيا:</strong> الرؤية بالبصيرة والواقع. الرؤيا في المنام.</p>
-                    <p><strong class="text-emerald-300">الإصغاء والاستماع:</strong> الإصغاء أعمق ويتطلب تركيزاً وتدبراً.</p>
-                    <div class="bg-emerald-900/20 p-3 rounded-xl border border-emerald-500/30">
-                        <p class="font-bold text-emerald-300 text-sm mb-2">قاعدة: التفكير هو أساس عملية اللغة</p>
-                        <p class="text-sm text-slate-300 mb-1"><strong class="text-white">بياجيه:</strong> الأساس يتشكل في المرحلة العمرية ويلازم الارتقاء المعرفي.</p>
-                        <p class="text-sm text-slate-300"><strong class="text-white">واطسون:</strong> اللغة والتفكير شيء واحد لا ينفصلان (كلام صامت).</p>
-                    </div>
+                    <p><strong class="text-fuchsia-300">الرؤية والرؤيا:</strong> الرؤية بالبصيرة والواقع. الرؤيا في المنام.</p>
+                    <p><strong class="text-fuchsia-300">الإصغاء والاستماع:</strong> الإصغاء أعمق ويتطلب تركيزاً وتدبراً.</p>
+                    <p><strong class="text-fuchsia-300">بياجيه:</strong> الأساس يتشكل في المرحلة العمرية ويلازم الارتقاء المعرفي.</p>
+                    <p><strong class="text-fuchsia-300">واطسون:</strong> اللغة والتفكير شيء واحد لا ينفصلان (كلام صامت).</p>
                 </div>
             </div>
             
@@ -297,7 +298,7 @@
     </div>
 
     <!-- ==============================================
-            4. تطبيق الاختبار (App Quiz)
+            5. تطبيق الاختبار (App Quiz)
             ============================================== -->
     <div id="app-quiz" class="screen inner-app-screen">
         <div class="app-header" style="border-bottom-color: rgba(245, 158, 11, 0.2);">
@@ -310,7 +311,7 @@
                 </div>
             </div>
             <div>
-                <h1 class="text-3xl font-tajawal font-black text-white leading-tight">اختبار شامل<br><span class="text-lg text-amber-400 font-bold">30 سؤال (ضع دائرة)</span></h1>
+                <h1 class="text-3xl font-tajawal font-black text-white leading-tight">اختبار شامل<br><span class="text-lg text-amber-400 font-bold">تختبر معلوماتك الجديدة</span></h1>
             </div>
         </div>
         <div class="app-content" id="quiz-container">
@@ -319,7 +320,7 @@
     </div>
 
     <!-- ==============================================
-            5. تطبيق الإعلان الهام
+            6. تطبيق الإعلان الهام
             ============================================== -->
     <div id="app-alert" class="screen inner-app-screen">
         <div class="app-header" style="border-bottom-color: rgba(239, 68, 68, 0.2);">
@@ -332,12 +333,11 @@
                 </div>
             </div>
             <div>
-                <h1 class="text-3xl font-tajawal font-black text-white leading-tight">إعلان هام<br><span class="text-lg text-red-400 font-bold">تنبيهات الامتحان</span></h1>
+                <h1 class="text-3xl font-tajawal font-black text-white leading-tight">إعلان مهم<br><span class="text-lg text-red-400 font-bold">تنبيهات الامتحان</span></h1>
             </div>
         </div>
 
         <div class="app-content text-slate-200">
-            
             <div class="bg-gradient-to-br from-red-900/40 to-slate-900 border border-red-500/30 rounded-3xl p-6 mb-6 shadow-xl relative overflow-hidden">
                 <i data-lucide="calendar-clock" class="absolute -left-4 -top-4 w-32 h-32 text-red-500/10"></i>
                 <h2 class="text-red-400 font-bold font-tajawal text-xl mb-2 relative z-10">موعد الامتحان القادم</h2>
@@ -345,40 +345,19 @@
             </div>
 
             <div class="space-y-4">
-                <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl flex items-start gap-4">
-                    <div class="bg-blue-500/20 p-3 rounded-full text-blue-400 shrink-0"><i data-lucide="id-card"></i></div>
-                    <div>
-                        <h3 class="text-white font-bold font-tajawal text-lg mb-1">الهوية الجامعية</h3>
-                        <p class="text-sm text-slate-400">الرجاء عدم نسيان إحضار هويتك الجامعية كشرط أساسي لدخول قاعة الامتحان.</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl flex items-start gap-4">
-                    <div class="bg-amber-500/20 p-3 rounded-full text-amber-400 shrink-0"><i data-lucide="hash"></i></div>
-                    <div>
-                        <h3 class="text-white font-bold font-tajawal text-lg mb-1">الرقم التسلسلي</h3>
-                        <p class="text-sm text-slate-400">يجب عليك حفظ الرقم التسلسلي الذي سيُعطى لك داخل القاعة لضمان ترتيبك وتوثيق ورقتك.</p>
-                    </div>
-                </div>
-
-                <div class="bg-emerald-900/20 border border-emerald-500/30 p-5 rounded-2xl flex items-start gap-4 mt-6">
-                    <div class="bg-emerald-500/20 p-3 rounded-full text-emerald-400 shrink-0"><i data-lucide="brain"></i></div>
-                    <div>
-                        <h3 class="text-emerald-400 font-bold font-tajawal text-lg mb-1">نصيحة ذهبية</h3>
-                        <p class="text-sm text-emerald-100/80 leading-relaxed">
-                            "هدوءك داخل القاعة وقراءتك المتأنية لورقة الامتحان يجعلك ملماً بجميع التفاصيل، ويقودك مباشرة نحو الإجابة الصحيحة. بالتوفيق!"
-                        </p>
-                    </div>
+                <div class="bg-slate-800/80 border border-slate-700 p-5 rounded-2xl">
+                    <p class="text-lg text-white leading-relaxed font-tajawal">
+                        الامتحان سيعقد 19/4/2026، الرجاء إحضار هويتك الجامعية مع حفظ رقم تسلسلي يُعطى بالامتحان. هدوءك وقراءتك للامتحان تجعلك ملماً بالتفاصيل وإجابتك صحيحة.
+                    </p>
                 </div>
             </div>
-
         </div>
     </div>
 
     <script>
         lucide.createIcons();
 
-        // تحديث الساعة إلى نظام 12 ساعة (شاشة القفل)
+        // تحديث الساعة إلى نظام 12 ساعة
         function updateClock() {
             const now = new Date();
             let hours = now.getHours();
@@ -386,12 +365,10 @@
             
             // تحويل الساعات إلى نظام 12 ساعة
             hours = hours % 12;
-            hours = hours ? hours : 12; // إذا كانت الساعة 0 (منتصف الليل)، اجعلها 12
+            hours = hours ? hours : 12; // إذا كانت الساعة 0، اجعلها 12
             
-            // إضافة صفر للدقائق إذا كانت أقل من 10
             minutes = minutes < 10 ? '0' + minutes : minutes;
             
-            // تحديث العرض
             document.getElementById('clock').textContent = `${hours}:${minutes}`;
 
             const options = { weekday: 'long', month: 'long', day: 'numeric' };
@@ -422,9 +399,13 @@
         }
 
         // ==============================================
-        // منطق الاختبار (Quiz Logic)
+        // منطق الاختبار (محدث بالأسئلة الجديدة)
         // ==============================================
         const quizQuestions = [
+            { q: "مؤسس علم الأخلاق هو؟", options: ["بياجيه", "سقراط", "أرسطو"], ans: 1 },
+            { q: "صاحب مقولة 'أولادكم ليسوا لكم، أولادكم أبناء الحياة المشتاقة'؟", options: ["سقراط", "جبران خليل جبران", "واطسون"], ans: 1 },
+            { q: "هناك فرق جوهري بين أن يكون للشيء قيمة وبين أن يكون له؟", options: ["ثمن", "معنى", "اسم"], ans: 0 },
+            { q: "ليس مهماً أن تكون مقتنعاً، ولكن من الضروري أن تكون؟", options: ["صادقاً", "موافقاً", "مجادلاً"], ans: 0 },
             { q: "أول أخطاء التفكير هو؟", options: ["التسرع في الحكم", "التمركز حول الذات", "التحيز"], ans: 1 },
             { q: "الخلل الحقيقي يكمن دائماً في؟", options: ["السلوك الظاهر", "المجتمع المحيط", "طريقة تفكيرنا"], ans: 2 },
             { q: "العقل في القرآن الكريم ورد بصورة؟", options: ["اسمية ثابتة", "فعلية (عملية تفكير)", "صفة مجردة"], ans: 1 },
@@ -432,29 +413,17 @@
             { q: "صاحب مقولة 'علامة العقل المتعلم قدرته على تداول الفكرة دون تقبلها' هو؟", options: ["بياجيه", "واطسون", "أرسطو"], ans: 2 },
             { q: "مقولة 'ليس كل من يفكر يتفكر' تعني أن التفكر هو؟", options: ["مرحلة أقل من التفكير", "مرحلة متقدمة وعميقة", "مرادف تماماً للتفكير"], ans: 1 },
             { q: "علم المستقبل يبنى بشكل أساسي على؟", options: ["التفكير الاستقرائي", "التفكير الاستنباطي", "المعرفة العامة"], ans: 0 },
-            { q: "القاعدة الذهبية تنص على أن؟", options: ["التعلم يسبق التعليم", "التعليم يسبق التعلم", "التعلم والتعليم نفس الشيء"], ans: 0 },
-            { q: "الهندسة المعرفية تعني؟", options: ["حفظ المعلومات", "بناء هيكل المعرفة وتغيير التفكير", "علم المستقبل"], ans: 1 },
-            { q: "حسب علم الإنسان (الأنثروبولوجيا) أساس الحضارة هي؟", options: ["أمومية", "أبوية", "مشتركة"], ans: 0 },
-            { q: "أي المفهومين أعمق وأشمل؟", options: ["التغير", "التطور", "كلاهما متساويان"], ans: 1 },
+            { q: "أي المفهومين أعمق وأشمل لأن الثاني قد يكون سلبياً؟", options: ["التغير", "التطور", "كلاهما متساويان"], ans: 1 },
             { q: "أكثر قيمة من الاعتراف (سواء كان فكرياً أو وجودياً) هو؟", options: ["المعرفة", "القرار", "التفكير"], ans: 1 },
-            { q: "مقولة 'رأيي صواب يحتمل الخطأ' تعود لـ؟", options: ["أرسطو", "الإمام الغزالي", "الإمام الشافعي"], ans: 2 },
             { q: "علاقتنا البشرية في التفكير الناقد يجب أن تبنى على أساس أنها؟", options: ["علاقة تفاضل", "علاقة تكامل", "علاقة تنافس"], ans: 1 },
             { q: "الرؤيَة (بالتاء المربوطة) تعني؟", options: ["ما يراه النائم في حلمه", "ما نراه في الواقع أو بالبصيرة", "التخيل المستقبلي"], ans: 1 },
-            { q: "العالم الذي ربط تطور التفكير بالمرحلة العمرية هو؟", options: ["بياجيه", "واطسون", "أرسطو"], ans: 0 },
             { q: "العالم الذي قال أن 'اللغة والتفكير شيء واحد لا ينفصلان' هو؟", options: ["بياجيه", "واطسون", "فرويد"], ans: 1 },
             { q: "المجتمعات تنمو وتتطور بناءً على تحديات تواجهها، هذه نظرية؟", options: ["التكامل والتفاضل", "التحدي والاستجابة", "التصنيف المعرفي"], ans: 1 },
-            { q: "التدرج في التعليم يعتبر منهجية؟", options: ["سلوكية تعليمية", "عشوائية", "معرفية فقط"], ans: 0 },
-            { q: "النظرية التي تؤكد أن عملية التعليم يجب أن تكون منفتحة وديناميكية؟", options: ["النظرية المعرفية", "النظرية الحلقية المفتوحة", "النظرية السلوكية"], ans: 1 },
             { q: "الشهادة الأكاديمية لا تنفي الجهل، وهذا يفسر مصطلح؟", options: ["المتعلم الجاهل", "الجهل المركب", "التلوث الضوضائي"], ans: 0 },
-            { q: "المرأة دورها الأهم يكمن في؟", options: ["التطوير البنائي للمجتمع", "التطوير الصناعي", "التفكير الاستنباطي"], ans: 0 },
             { q: "بدون هذا الشيء، مهما تعلمنا فلن ننجح حقاً؟", options: ["الحصول على شهادة", "استشعار القيمة", "البيئة الهادئة"], ans: 1 },
-            { q: "النظرية المعرفية تعتمد بشكل أساسي على؟", options: ["فك الرموز للوصول للحقيقة", "إعادة تشرب الذهنية العقلية", "الاستماع والتلقين"], ans: 0 },
-            { q: "نحن نختلف لنتفق، والهدف الأسمى من ذلك هو أن؟", options: ["نثبت ذواتنا", "نتعلم كيف نفكر في المعرفة", "ننتصر في النقاش"], ans: 1 },
             { q: "عبارة 'نحتاج الحقيقة ولكننا لا نعترف بالخطأ' تدل على مفارقة في؟", options: ["التمركز حول الذات", "التحيز", "قوة الشخصية"], ans: 0 },
-            { q: "التفكير الاستنباطي والتفكير الاستقرائي هما من أنواع؟", options: ["التفكير السلبي", "التفكير الهادف", "التفكير العشوائي"], ans: 1 },
             { q: "من معوقات التفكير ويؤثر على الأسس العلمية المجردة؟", options: ["التلوث الضوضائي", "التحدي والاستجابة", "الهندسة المعرفية"], ans: 0 },
-            { q: "ما ندركه بوعينا في اللحظة الحالية يسمى؟", options: ["اللاشعور", "الشعور", "اليقين"], ans: 1 },
-            { q: "لحل أسلوب الحوار يجب علينا؟", options: ["إعادة تشرب الذهنية العقلية", "تجنب النقاش تماماً", "التحيز لرأينا"], ans: 0 }
+            { q: "ما ندركه بوعينا في اللحظة الحالية يسمى؟", options: ["اللاشعور", "الشعور", "اليقين"], ans: 1 }
         ];
 
         let quizGenerated = false;
@@ -486,7 +455,7 @@
             });
 
             container.innerHTML += `<button class="btn-submit" onclick="submitQuiz()">عرض النتيجة النهائية</button>`;
-            container.innerHTML += `<div id="quiz-result" class="mt-8 text-center font-tajawal text-2xl font-bold pb-10"></div>`;
+            container.innerHTML += `<div id="quiz-result" class="mt-8 text-center font-tajawal text-xl font-bold pb-10"></div>`;
             quizGenerated = true;
         }
 
@@ -501,6 +470,7 @@
         function submitQuiz() {
             let score = 0;
             let answered = 0;
+            let total = quizQuestions.length;
 
             quizQuestions.forEach((q, index) => {
                 const selected = document.querySelector(`input[name="q${index}"]:checked`);
@@ -526,17 +496,14 @@
             });
 
             const resultDiv = document.getElementById('quiz-result');
-            if(answered < 30) {
-                resultDiv.innerHTML = `<div class="bg-red-500/20 border border-red-500/50 p-6 rounded-2xl"><span class="text-red-400 block mb-2">لقد أجبت على ${answered} من 30 سؤال.</span><span class="text-white">نتيجتك هي: ${score} / 30</span></div>`;
+            if(answered < total) {
+                resultDiv.innerHTML = `<div class="bg-red-500/20 border border-red-500/50 p-6 rounded-2xl"><span class="text-red-400 block mb-2">أجبت على ${answered} من ${total} سؤال.</span><span class="text-white text-2xl">النتيجة: ${score} / ${total}</span></div>`;
             } else {
-                resultDiv.innerHTML = `<div class="bg-emerald-500/20 border border-emerald-500/50 p-6 rounded-2xl"><span class="text-emerald-400 block mb-2">اكتمل الاختبار بنجاح!</span><span class="text-white">نتيجتك النهائية هي: ${score} / 30</span></div>`;
+                resultDiv.innerHTML = `<div class="bg-emerald-500/20 border border-emerald-500/50 p-6 rounded-2xl"><span class="text-emerald-400 block mb-2">اكتمل الاختبار!</span><span class="text-white text-2xl">النتيجة: ${score} / ${total}</span></div>`;
             }
             
             const contentDiv = document.getElementById('app-quiz').querySelector('.app-content');
-            contentDiv.scrollTo({
-                top: contentDiv.scrollHeight,
-                behavior: 'smooth'
-            });
+            contentDiv.scrollTo({ top: contentDiv.scrollHeight, behavior: 'smooth' });
         }
     </script>
 </body>
